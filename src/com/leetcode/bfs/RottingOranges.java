@@ -50,21 +50,21 @@ public class RottingOranges {
     }
 
     public int orangesRotting(int[][] grid) {
-//add rotten to q and count fresh
-        int count = 0;
+//add rotten to q and freshCount fresh
+        int freshCount= 0;
         Queue<int[]> q = new LinkedList<>();
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
                 if (grid[i][j] == 2) {
                     q.add(new int[]{i, j});
                 } else if (grid[i][j] == 1) {
-                    count++;
+                    freshCount++;
                 }
             }
         }
 
         //return zero if there are no fresh oranges
-        if (count == 0) {
+        if (freshCount == 0) {
             return 0;
         }
 
@@ -84,13 +84,13 @@ public class RottingOranges {
 
                     grid[x][y] = 2;
                     q.add(new int[]{x, y});
-                    count--;
+                    freshCount--;
                 }
             }
         }
 
         //Return the minimum number of minutes that must elapse until no cell has a fresh orange.  If this is impossible, return -1 instead.
-        if (count == 0) {
+        if (freshCount == 0) {
             return res - 1;
         }
 

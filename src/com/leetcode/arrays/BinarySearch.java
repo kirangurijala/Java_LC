@@ -1,4 +1,4 @@
-package com.leetcode.arrays.topK;
+package com.leetcode.arrays;
 
 /*
 https://leetcode.com/problems/binary-search/
