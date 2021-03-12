@@ -35,32 +35,18 @@ Output: [[3,3],[-2,4]]
 public class KClosestPointstoOrigin {
     public static void main(String[] args) {
         KClosestPointstoOrigin solution = new KClosestPointstoOrigin();
-        System.out.println(solution.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2));
+        System.out.println(solution.kClosest(new int[][]{{3,3},{5,-1},{-2,4}}, 2));
     }
 
-    public int[] topKFrequent(int[] nums, int k) {
-        Map<Integer, Integer> counts = new HashMap<>();
-        for (Integer num : nums) {
-            counts.put(num, counts.getOrDefault(num, 0) + 1);
+    public int[][] kClosest(int[][] points, int K) {
+        PriorityQueue<int[]> q=new PriorityQueue<>((a,b)->(b[0]*b[0]+b[1]*b[1])-(a[0]*a[0]+a[1]*a[1]));
+        for(int[] point:points){
+            q.add(point);
+            while(q.size()>K){
+                q.poll();
+            }
         }
 
-     PriorityQueue<Integer> q=new PriorityQueue<>((a,b)->counts.get(b)-counts.get(a));
-     for(Integer num:counts.keySet()){
-       q.add(num);
-     }
-
-     int[] topK=new int[k];
-     for (int i = 0; i < k; i++) {
-       topK[i]=q.poll();
-     }
-
-//        List<Integer> res = new ArrayList<>(counts.keySet());
-//        Collections.sort(res, (a, b) -> counts.get(b) - counts.get(a));
-//        int[] topK = new int[k];
-//        for (int i = 0; i < k; i++) {
-//            topK[i] = res.get(i);
-//        }
-
-        return topK;
+        return q.toArray(new int[K][2]);
     }
 }

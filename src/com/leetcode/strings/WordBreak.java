@@ -1,9 +1,6 @@
 package com.leetcode.strings;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /*
 https://leetcode.com/problems/word-break/
@@ -40,8 +37,28 @@ public class WordBreak {
         WordBreak solution = new WordBreak();
         System.out.println(solution.wordBreak("abbaca", Arrays.asList("abb","aca")));
     }
-
     public boolean wordBreak(String s, List<String> wordDict) {
+        Queue<Integer> queue = new LinkedList<>();
+        int[] visited = new int[s.length()];
+        queue.add(0);
+        while (!queue.isEmpty()) {
+            int start = queue.remove();
+            if (visited[start] == 0) {
+                for (int i = start + 1; i <= s.length(); i++) {
+                    if (wordDict.contains(s.substring(start, i))) {
+                        queue.add(i);
+                        if (i == s.length()) {
+                            return true;
+                        }
+                    }
+                }
+                visited[start] = 1;
+            }
+        }
+        return false;
+    }
+
+    public boolean wordBreak22(String s, List<String> wordDict) {
         Set<String> wordDictSet = new HashSet<>(wordDict);
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;

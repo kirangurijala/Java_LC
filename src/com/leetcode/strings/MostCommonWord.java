@@ -30,7 +30,7 @@ import java.util.Map;
 
 class MostCommonWord {
     public static String mostCommonWord(String paragraph, String[] banned) {
-        if (paragraph == null || paragraph.length() == 0 || banned == null || banned.length == 0) {
+        if (paragraph == null || paragraph.length() == 0 || banned == null) {
             return "";
         }
         String[] words = paragraph.toLowerCase().split("\\W+");
@@ -53,6 +53,35 @@ class MostCommonWord {
         //return Collections.max(count.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 
+    public String mostCommonWord33(String paragraph, String[] banned) {
+        if (paragraph == null || paragraph.length() == 0) {
+            return "";
+        }
+
+        String[] words=paragraph.toLowerCase().split("\\W+");
+        Map<String,Integer> map=new HashMap();
+        for(String word:words){
+            map.put(word, map.getOrDefault(word,0)+1);
+        }
+
+        for(String ban:banned){
+            if(map.containsKey(ban)){
+                map.remove(ban);
+            }
+        }
+
+        int max=0;
+        String res="";
+        for(String word:words){
+            int count=map.getOrDefault(word,0);
+            if(count>max){
+                max=count;
+                res=word;
+            }
+        }
+
+        return res;
+    }
     public static void main(String[] args) {
         String[] strs = new String[]{"flower", "flow", "flight"};
 

@@ -17,7 +17,7 @@ m.next(10) = (1 + 10) / 2
 m.next(3) = (1 + 10 + 3) / 3
 m.next(5) = (10 + 3 + 5) / 3
 */
-public class MovingAverage {
+  public class MovingAverage {
   /** initialize your data structure here. */
    Queue<Integer> q;
    int size=0;

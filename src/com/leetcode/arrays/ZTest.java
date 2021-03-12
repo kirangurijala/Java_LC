@@ -1,9 +1,8 @@
 package com.leetcode.arrays;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.PriorityQueue;
+import com.sun.source.tree.ReturnTree;
+
+import java.util.*;
 
 /*
 
@@ -31,5 +30,30 @@ public class ZTest {
     public int threeSum(int[] nums) {
 
         return 0;
+    }
+    public String longestPalindrome(String s) {
+        if(s==null || s.isBlank()){
+            return s;
+        }
+        for (int i = 0; i <s.length() ; i++) {
+            extendedPalindrome(s,i,i+1);
+            extendedPalindrome(s,i,i);
+        }
+
+        return s.substring(start,start+max);
+    }
+    int start=0,max=0;
+    private void extendedPalindrome(String s,int i, int j){
+        while(i>0 && j<s.length()){
+            if(s.charAt(i)==s.charAt(j)){
+                i++;
+                j--;
+            }
+        }
+
+        if(max<j-i+1){
+            max=j-i+1;
+            start=i;
+        }
     }
 }

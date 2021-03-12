@@ -57,11 +57,17 @@ public class MaximumDepthofBinaryTree {
     }
 
     public int maxDepth(TreeNode root) {
-        if (root == null) {
+        if(root ==null){
             return 0;
         }
+        // recursively find the longest path in
+        // both left child and right child
+        int L=maxDepth(root.left);
+        int R=maxDepth(root.right);
 
-
-        return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+//return the longest one between left_path and right_path;
+        // remember to add 1 for the path connecting the node and its parent
+        return Math.max(L,R)+1;
+        //return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
     }
 }

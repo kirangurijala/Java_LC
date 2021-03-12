@@ -33,23 +33,29 @@ Output: "ZY"
 */
 public class ExcelSheetColumnTitle {
     public String convertToTitle(int n) {
-        char[] chars=new char[26];
-        for(char ch='A';ch<='Z';ch++){
-            chars[ch-'A']=ch;
-        }
-
-        StringBuilder sb=new StringBuilder();
-//        while(n!=0){
-//          sb.append(chars[(n-1)%26]);
-//          n=(n-1)/26;
-//        }
-
-        while(n!=0){
+       StringBuilder sb=new StringBuilder();
+        while(n>0){
             n--;
-            char temp=(char)('A'+(n%26));
-            sb.append(temp);
+            sb.append((char)('A'+n%26));
             n=n/26;
         }
+
+        //        char[] chars=new char[26];
+//        for(char ch='A';ch<='Z';ch++){
+//            chars[ch-'A']=ch;
+//        }
+//
+////        while(n!=0){
+////          sb.append(chars[(n-1)%26]);
+////          n=(n-1)/26;
+////        }
+//
+//        while(n!=0){
+//            n--;
+//            char temp=(char)('A'+(n%26));
+//            sb.append(temp);
+//            n=n/26;
+//        }
 
         return sb.reverse().toString();
     }

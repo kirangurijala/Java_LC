@@ -40,16 +40,18 @@ public class BasicCalculatorII {
     }
 
     int calculate(String s) {
-        int len;
-        if (s == null || (len = s.length()) == 0) return 0;
+        if (s == null || s.isEmpty()) return 0;
         Stack<Integer> stack = new Stack<Integer>();
         int num = 0;
         char sign = '+';
-        for (int i = 0; i < len; i++) {
-            if (Character.isDigit(s.charAt(i))) {
-                num = num * 10 + s.charAt(i) - '0';
+        int length=s.length();
+        for (int i = 0; i < length; i++) {
+            char ch = s.charAt(i);
+            if (Character.isDigit(ch)) {
+                num = num * 10 + Character.getNumericValue(ch);
             }
-            if ((!Character.isDigit(s.charAt(i)) && ' ' != s.charAt(i)) || i == len - 1) {
+
+            if (!Character.isDigit(ch) && !Character.isWhitespace(ch) || i == length - 1) {
                 if (sign == '+') {
                     stack.push(num);
                 }
@@ -63,16 +65,16 @@ public class BasicCalculatorII {
                     stack.push(stack.pop() / num);
                 }
 
-                sign = s.charAt(i);
+                sign = ch;
                 num = 0;
             }
         }
 
-        int result = 0;
-        for (int i : stack) {
-            result = result + i;
+        int sum = 0;
+        for (int n : stack) {
+            sum = sum + n;
         }
 
-        return result;
+        return sum;
     }
 }

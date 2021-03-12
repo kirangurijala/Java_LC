@@ -26,15 +26,45 @@ return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
 
     */
 public class PathSum {
-    class Solution {
-        public boolean hasPathSum(TreeNode root, int sum) {
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if(root == null){
+            return false;
+        }
+
+        LinkedList<Integer> sums = new LinkedList<Integer>();
+        LinkedList<TreeNode> q=new LinkedList<>();
+        q.add(root);
+        sums.add(sum - root.val);
+        int pathSum=0;
+        TreeNode node;
+        while(!q.isEmpty()){
+            int size=q.size();
+            node=q.pollLast();
+            pathSum=sums.pollLast();
+            if ((node.right == null) && (node.left == null) && (pathSum == 0))
+                return true;
+
+            if (node.right != null) {
+                q.add(node.right);
+                sums.add(pathSum - node.right.val);
+            }
+            if (node.left != null) {
+                q.add(node.left);
+                sums.add(pathSum - node.left.val);
+            }
+        }
+
+        return false;
+    }
+
+        public boolean hasPathSum22(TreeNode root, int sum) {
             if(root == null){
                 return false;
             }
             if(root.left == null && root.right==null) return sum==root.val;
             return hasPathSum(root.left,sum- root.val) || hasPathSum(root.right,sum- root.val);
         }
-    }
+
 
     public static void main(String[] args) {
         BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();

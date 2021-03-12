@@ -1,6 +1,8 @@
 package com.leetcode.math;
 
 /*
+https://leetcode.com/problems/palindrome-number/
+
 9. Palindrome Number
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
 
@@ -27,17 +29,17 @@ Output: false
 */
 public class PalindromeNumber {
     public static boolean isPalindrome(int x) {
-        if (x < 0 || x % 10 == 0) {
+        if(x<0 || x%10==0 && x != 0){
             return false;
         }
 
-        long rev = 0;
-        while (x > rev) {
+        int rev=0;
+        while(x>rev){
             rev = rev * 10 + x % 10;
-            x = x / 10;
+            x=x/10;
         }
 
-        return rev == x || x == rev / 10;
+        return rev/10==x || rev==x;
     }
 
     public static void main(String[] args) {

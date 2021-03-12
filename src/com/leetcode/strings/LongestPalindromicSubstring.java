@@ -28,14 +28,9 @@ public class LongestPalindromicSubstring {
       return S;
     }
 
-    if(S.length()%2==0){
-      for (int i = 0; i <S.length() ; i++) {
-        extendedPalindrome(S,i,i+1);
-      }
-    }else{
-        for (int i = 0; i <S.length() ; i++) {
-          extendedPalindrome(S,i,i);
-        }
+    for (int i = 0; i <S.length() ; i++) {
+      extendedPalindrome(S,i,i+1);
+     extendedPalindrome(S,i,i);
     }
 
     return S.substring(lo,lo+maxLen);

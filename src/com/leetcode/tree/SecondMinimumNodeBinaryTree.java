@@ -75,19 +75,19 @@ public class SecondMinimumNodeBinaryTree {
 
     public int findSecondMinimumValue(TreeNode root) {
         preorderTraversal(root);
-        int min = root.val;
-        long ans = Long.MAX_VALUE;
-        for (int v : res) {
-            if (min < v && v < ans) {
-                ans = v;
+        preorderTraversal(root);
+        long min=Long.MAX_VALUE;//nodes cannot be -ve
+        for(int n:res){
+            if(root.val<n && n<min){
+                min=n;
             }
         }
 
-        if (ans == Long.MAX_VALUE) {
+        if(min==Long.MAX_VALUE){
             return -1;
         }
 
-        return (int) ans;
+        return (int)min;
     }
 
     public void preorderTraversal(TreeNode root) {

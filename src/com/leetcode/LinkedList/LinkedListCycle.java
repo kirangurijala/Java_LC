@@ -3,6 +3,8 @@ package com.leetcode.LinkedList;
 import java.util.HashSet;
 
 /*
+https://leetcode.com/problems/linked-list-cycle/
+
 Reverse a singly linked list.
 
 Example:

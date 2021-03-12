@@ -1,5 +1,8 @@
 package com.leetcode.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /*
 https://leetcode.com/problems/symmetric-tree/
 226. Invert Binary Tree
@@ -74,5 +77,34 @@ public class SymmetricTree {
         }
 
         return helper(left.left, right.left) && helper(left.right, right.right);
+    }
+
+    public boolean isSymmetricR(TreeNode root) {
+        Queue<TreeNode> nodes=new LinkedList<>();
+        nodes.add(root.left);
+        nodes.add(root.right);
+
+        while(!nodes.isEmpty()){
+            TreeNode p1=nodes.poll();
+            TreeNode p2=nodes.poll();
+            if(p1 == null || p2==null){
+                if(p1==p2){
+                    continue;
+                }else{
+                    return false;
+                }
+            }
+
+            if(p1.val!=p2.val){
+                return false;
+            }
+            nodes.add(p1.left);
+            nodes.add(p2.right);
+            nodes.add(p1.right);
+            nodes.add(p2.left);
+        }
+
+        return true;
+        //return isSymmetric(root.left, root.right);
     }
 }

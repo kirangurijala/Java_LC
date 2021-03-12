@@ -45,19 +45,41 @@ public class DiameterBinaryTree {
         System.out.println(treee.diameterOfBinaryTree(root));
     }
 
+    private int diameter=0;
     public int diameterOfBinaryTree(TreeNode root) {
         depth(root);
-        return res - 1;
+        return diameter;
     }
 
-    public int depth(TreeNode root) {
-        if (root == null) {
+    private int depth(TreeNode root){
+        if(root ==null){
             return 0;
         }
-
-        int L = depth(root.left);
-        int R = depth(root.right);
-        res = Math.max(res, L + R + 1);
-        return Math.max(L, R) + 1;
+        // recursively find the longest path in
+        // both left child and right child
+        int L=depth(root.left);
+        int R=depth(root.right);
+        // update the diameter if left_path plus right_path is larger
+        diameter=Math.max(diameter,L+R);
+//return the longest one between left_path and right_path;
+        // remember to add 1 for the path connecting the node and its parent
+        return Math.max(L,R)+1;
     }
+
+//    private int diameter;
+//    public int diameterOfBinaryTree(TreeNode root) {
+//        depth(root);
+//        return res - 1;
+//    }
+//
+//    public int depth(TreeNode root) {
+//        if (root == null) {
+//            return 0;
+//        }
+//
+//        int L = depth(root.left);
+//        int R = depth(root.right);
+//        res = Math.max(res, L + R + 1);
+//        return Math.max(L, R) + 1;
+//    }
 }

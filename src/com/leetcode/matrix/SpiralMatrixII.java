@@ -25,7 +25,7 @@ Output: [[1]]
 public class SpiralMatrixII {
     public static void main(String[] args) {
         SpiralMatrixII solution = new SpiralMatrixII();
-        int[][] result=solution.generateMatrix(4);
+        int[][] result=solution.generateMatrix(3);
         for (int[] arr:result) {
             for (int n:arr) {
                 System.out.print(n+" ");
@@ -43,16 +43,16 @@ public class SpiralMatrixII {
         int curr=1;
         int l = 0, r = n - 1, u = 0, d = n - 1;
         while (curr <= n*n) {
-            for (int i = l; i <= r; i++) {
+            for (int i = l; i <= r && curr <= n*n; i++) {
                 matrix[u][i]=curr++;
             }
-            for (int i = u + 1; i <= d - 1; i++) {
+            for (int i = u + 1; i <= d - 1&& curr <= n*n; i++) {
                 matrix[i][r]=curr++;
             }
-            for (int i = r; i >= l; i--) {
+            for (int i = r; i >= l && curr <= n*n; i--) {
                 matrix[d][i]=curr++;
             }
-            for (int i = d - 1; i >= u + 1; i--) {
+            for (int i = d - 1; i >= u + 1 && curr <= n*n; i--) {
                 matrix[i][l]=curr++;
             }
 

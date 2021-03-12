@@ -1,6 +1,8 @@
 package com.leetcode.arrays;
 
 /*
+https://leetcode.com/problems/majority-element/
+
 169. Majority Element
 Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
 
@@ -20,12 +22,12 @@ public class MajorityElement {
     public static int majorityElement(int[] nums) {
         int count = 0, major = 0;
         for (int n : nums) {
-            if (count == 0) {
-                major = n;
-                count = 1;
-            } else if (major == n) {
+            if(count==0){
                 count++;
-            } else {
+                major=n;
+            }else if(major==n){
+                count++;
+            }else{
                 count--;
             }
         }
