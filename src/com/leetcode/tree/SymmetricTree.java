@@ -64,20 +64,21 @@ public class SymmetricTree {
         }
 
 
-        return helper(root.left, root.right);
+        return isSame(root.left, root.right);
     }
 
-    private boolean helper(TreeNode left, TreeNode right) {
-        if (left == null || right == null) {
-            return left == right;
+    public boolean isSame(TreeNode left,TreeNode right) {
+        if(left == null || right==null){
+            return left==right;
         }
 
-        if (left.val != right.val) {
+        if(left.val!=right.val){
             return false;
         }
 
-        return helper(left.left, right.left) && helper(left.right, right.right);
+        return isSame(left.right, right.left) && isSame(left.left, right.right);
     }
+
 
     public boolean isSymmetricR(TreeNode root) {
         Queue<TreeNode> nodes=new LinkedList<>();

@@ -35,26 +35,30 @@ Output: false
 public class WordBreak {
     public static void main(String[] args) {
         WordBreak solution = new WordBreak();
-        System.out.println(solution.wordBreak("abbaca", Arrays.asList("abb","aca")));
+        System.out.println(solution.wordBreak("catsandog", Arrays.asList("cats", "dog", "sand", "and", "cat")));
     }
-    public boolean wordBreak(String s, List<String> wordDict) {
-        Queue<Integer> queue = new LinkedList<>();
-        int[] visited = new int[s.length()];
-        queue.add(0);
-        while (!queue.isEmpty()) {
-            int start = queue.remove();
-            if (visited[start] == 0) {
-                for (int i = start + 1; i <= s.length(); i++) {
-                    if (wordDict.contains(s.substring(start, i))) {
-                        queue.add(i);
-                        if (i == s.length()) {
-                            return true;
-                        }
+    public boolean wordBreak222(String s, List<String> wordDict) {
+        Queue<Integer> q=new LinkedList<>();
+        Set<String> wordDictSet = new HashSet<>(wordDict);
+        q.add(0);
+        boolean[] visited = new boolean[s.length()];
+        while (!q.isEmpty()){
+            int start=q.poll();
+            if(visited[start]){
+                continue;
+            }
+
+            for (int i = start; i <=s.length() ; i++) {
+                if(wordDict.contains(s.substring(start,i))){
+                    q.offer(i);
+                    if (i == s.length()) {
+                        return true;
                     }
                 }
-                visited[start] = 1;
             }
+            visited[start]=true;
         }
+
         return false;
     }
 
@@ -72,18 +76,18 @@ public class WordBreak {
         }
         return dp[s.length()];
     }
-    // public boolean wordBreak(String s, List<String> wordDict) {
-    //      return wordBreak(s, new HashSet<>(wordDict), 0);
-    //  }
-    //  private boolean wordBreak(String s, Set<String> wordDict, int start) {
-    //      if (start == s.length()) {
-    //          return true;
-    //      }
-    //      for (int end = start + 1; end <= s.length(); end++) {
-    //          if (wordDict.contains(s.substring(start, end)) && wordBreak(s, wordDict, end)) {
-    //              return true;
-    //          }
-    //      }
-    //      return false;
-    //  }
+     public boolean wordBreak(String s, List<String> wordDict) {
+          return wordBreak(s, new HashSet<>(wordDict), 0);
+      }
+      private boolean wordBreak(String s, Set<String> wordDict, int start) {
+          if (start == s.length()) {
+              return true;
+          }
+          for (int end = start + 1; end <= s.length(); end++) {
+              if (wordDict.contains(s.substring(start, end)) && wordBreak(s, wordDict, end)) {
+                  return true;
+              }
+          }
+          return false;
+      }
 }

@@ -119,6 +119,7 @@ public class BinaryTreeImplementation {
     //The in-order traversal consists of first visiting the left sub-tree, then the root node, and finally the right sub-tree. There are more ways to traverse a tree.
     public void traverseInOrder(TreeNode tree) {
         if (tree == null) {
+            System.out.print(" " + "#");
             return;
         }
         traverseInOrder(tree.left);

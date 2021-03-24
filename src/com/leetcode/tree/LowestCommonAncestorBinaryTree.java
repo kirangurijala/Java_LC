@@ -69,7 +69,10 @@ public class LowestCommonAncestorBinaryTree {
         if (root == null) {
             return root;
         }
-
+        //if allows duplicate values
+// if(root==p || root==q){
+//            return root;
+//        }
         if (root.val == p.val || root.val == q.val) {
             return root;
         }
@@ -80,10 +83,16 @@ public class LowestCommonAncestorBinaryTree {
             return root;
         }
 
-        if (left != null) {
-            return left;
+        if (left == null) {
+            return right;
         }
 
-        return right;
+        return left;
+
+//        if (left != null) {
+//            return left;
+//        }
+//
+//        return right;
     }
 }

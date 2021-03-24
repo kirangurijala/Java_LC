@@ -31,17 +31,24 @@ The number of nodes in the list is in the range [0, 100].
 Follow up: Can you solve the problem without modifying the values in the list's nodes? (i.e., Only nodes themselves may be changed.)
     */
 public  class SwapNodesinPairs {
-  public static ListNode reverseList(ListNode head) {
-    ListNode rev=null;
+  public static ListNode swapPairs(ListNode head) {
+    ListNode dummy=new ListNode(-1);
+    dummy.next=head;
+    ListNode rev=dummy;
     ListNode curr=head;
-    while(curr!=null){
-      ListNode temp=curr.next;
-      curr.next=rev;
-      rev=curr;
-      curr=temp;
+
+    while(curr!=null && curr.next!=null){
+      ListNode firstNode=curr;
+      ListNode secondNode=curr.next;
+
+      ListNode temp=firstNode.next;
+      firstNode.next=secondNode.next;
+      secondNode.next=firstNode;
+
+      curr=temp.next;
     }
 
-    return rev;
+    return dummy.next;
   }
 
 
@@ -52,7 +59,7 @@ public  class SwapNodesinPairs {
     ListNode ls4=new ListNode(4,ls3);
     System.out.println(ls1);
 
-    System.out.println(reverseList(ls4));//4 3 2 1
-    System.out.println(ls4==reverseList(reverseList(ls4)));
+    System.out.println(swapPairs(ls4));//4 3 2 1
+    System.out.println(ls4==swapPairs(swapPairs(ls4)));
   }
 }

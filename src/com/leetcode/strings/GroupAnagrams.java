@@ -55,15 +55,13 @@ public class GroupAnagrams {
     }
 
     public List<List<String>> groupAnagrams(String[] strs) {
-        List<List<String>> res = new ArrayList<>();
-        Map<String, List<String>> map = new HashMap<>();
-        for (String str : strs) {
-            char[] chars = str.toCharArray();
+        Map<String,List<String>> map=new HashMap<>();
+        for (String str:strs) {
+            char[] chars=str.toCharArray();
             Arrays.sort(chars);
-            String temp = String.valueOf(chars);
-            List<String> ls = map.getOrDefault(temp, new ArrayList<>());
-            ls.add(str);
-            map.put(temp, ls);
+            String word=String.valueOf(chars);
+            map.putIfAbsent(word,new ArrayList<>());
+            map.get(word).add(str);
         }
 
         return new ArrayList<>(map.values());

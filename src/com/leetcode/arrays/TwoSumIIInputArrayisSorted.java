@@ -40,14 +40,14 @@ Constraints:
 public class TwoSumIIInputArrayisSorted {
     public static void main(String[] args) {
         TwoSumIIInputArrayisSorted solution = new TwoSumIIInputArrayisSorted();
-        int arr[] = {2, 7, 11, 15};
+        int[] arr = {2, 7, 11, 15};
         for (int n : solution.twoSum(arr, 9)) {
             System.out.print(n + " ");
         }
     }
 
     public int[] twoSum(int[] numbers, int target) {
-        int sum = 0;
+        int sum;
         int l = 0, h = numbers.length - 1;
         while (l < h) {
             sum = numbers[l] + numbers[h];

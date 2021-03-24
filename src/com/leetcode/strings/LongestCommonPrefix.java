@@ -41,7 +41,7 @@ class LongestCommonPrefix {
             }
         }
 
-        return "";
+        return pre;
     }
 
     public static void main(String[] args) {

@@ -80,10 +80,11 @@ public class StringCompression {
 
             if (count < 10) {
                 chars[index++] = (char) (count + '0');
-            } else if (count >= 10) {
-                for (char ch : String.valueOf(count).toCharArray()) {
-                    chars[index++] = ch;
-                }
+                continue;
+            }
+
+            for (char ch : String.valueOf(count).toCharArray()) {
+                chars[index++] = ch;
             }
         }
 

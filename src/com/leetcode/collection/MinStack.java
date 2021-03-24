@@ -36,14 +36,15 @@ Constraints:
     Methods pop, top and getMin operations will always be called on non-empty stacks.
 */
 public class MinStack {
+
   /** initialize your data structure here. */
-  static Stack<Integer> stack;
-  static int min=Integer.MAX_VALUE;
+   Stack<Integer> stack;
+   int min=Integer.MAX_VALUE;
   public MinStack() {
     stack=new Stack<>();
   }
 
-  public static void push(int x) {
+  public  void push(int x) {
     if(x<=min){
       stack.push(min);
       min=x;
@@ -52,37 +53,37 @@ public class MinStack {
     stack.push(x);
   }
 
-  public static void pop() {
+  public  void pop() {
     if (stack.pop() == min) {
       min = stack.pop();
     }
   }
 
-  public static int top() {
+  public  int top() {
     return stack.peek();
   }
 
-  public static int getMin() {
+  public  int getMin() {
     return min;
   }
 
   public static void main(String[] args) {
-    new MinStack();
-    push(5);
-    push(2);
-    push(1);
-    push(3);
-    push(4);
-    System.out.println(getMin());
-    System.out.println(top());
-    System.out.println(stack);
-    pop();
-    pop();
-    pop();
-    System.out.println(getMin());
-    System.out.println(top());
-    System.out.println(stack);
+    MinStack minStack=new MinStack();
+    minStack.push(5);
+    minStack.push(2);
+    minStack.push(1);
+    minStack.push(3);
+    minStack.push(4);
+    System.out.println(minStack.getMin());
+    System.out.println(minStack.top());
+    System.out.println( minStack.stack);
+    minStack.pop();
+    minStack.pop();
+    minStack.pop();
+    System.out.println(minStack.getMin());
+    System.out.println(minStack.top());
+    System.out.println( minStack.stack);
 
-    System.out.println(getMin());
+    System.out.println(minStack.getMin());
   }
 }

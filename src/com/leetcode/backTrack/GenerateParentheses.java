@@ -26,23 +26,25 @@ public class GenerateParentheses {
         System.out.println(solution.generateParenthesis(3));
     }
 
+    List<String> res=new ArrayList<>();
+    int max=0;
     public List<String> generateParenthesis(int n) {
-        List<String> res=new ArrayList<>();
-        backTrack("",0,0,res,n);
+        max=n;
+        backTrack("",0,0);
         return res;
     }
 
-    private void backTrack(String curr,int open,int close,List<String> res,int max){
+    private void backTrack(String curr, int open, int close){
         if(curr.length()==max*2){
             res.add(curr);
             return;
         }
 
         if(open<max){
-            backTrack(curr+"(",open+1,close,res,max);
+            backTrack(curr+"(",open+1,close);
         }
         if(open>close){
-            backTrack(curr+")",open,close+1,res,max);
+            backTrack(curr+")",open,close+1);
         }
     }
 }

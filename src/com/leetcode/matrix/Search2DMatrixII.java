@@ -44,13 +44,30 @@ public class Search2DMatrixII {
     }
 
     public boolean searchMatrix(int[][] matrix, int target) {
-        int i = matrix.length - 1, j = 0;
-        while (i >= 0 && j < matrix[0].length) {
-            if (matrix[i][j] > target) {
-                i--;
-            } else if (matrix[i][j] < target) {
-                j++;
-            } else {
+        int col=matrix[0].length-1,row=0;
+        while(col>=0&&row<matrix.length){
+            if(matrix[row][col]>target){
+                col--;
+            }else if(matrix[row][col]<target){
+                row++;
+            }else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean searchMatrix33(int[][] matrix, int target) {
+        // start our "pointer" in the bottom-left
+        int row = matrix.length-1;
+        int col = 0;
+
+        while (row >= 0 && col < matrix[0].length) {
+            if (matrix[row][col] > target) {
+                row--;
+            } else if (matrix[row][col] < target) {
+                col++;
+            } else { // found it
                 return true;
             }
         }

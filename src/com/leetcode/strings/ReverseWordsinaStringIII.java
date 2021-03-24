@@ -11,15 +11,17 @@ Note: In the string, each word is separated by single space and there will not b
 */
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 class ReverseWordsinaStringIII {
     public String reverseWords2(String input) {
         final StringBuilder result = new StringBuilder();
         final StringBuilder word = new StringBuilder();
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != ' ') {
-                word.append(input.charAt(i));
+        for (char ch:input.toCharArray()) {
+            if (ch != ' ') {
+                word.append(ch);
             } else {
                 result.append(word.reverse());
                 result.append(" ");
@@ -30,8 +32,26 @@ class ReverseWordsinaStringIII {
         result.append(word.reverse());
         return result.toString();
     }
-
     public String reverseWords(String s) {
+        StringBuilder sb=new StringBuilder();
+        List<String> ls=new ArrayList<>();
+        for (char ch:s.toCharArray()) {
+            if(!Character.isWhitespace(ch)){
+                sb.append(ch);
+                continue;
+            }
+            // if(sb.length()!=0&&Character.isWhitespace(ch)){ if there more than one spase
+            ls.add(reverse(sb.toString()));
+            sb.setLength(0);
+            //}
+        }
+
+        ls.add(reverse(sb.toString()));
+        return String.join(" ",ls);
+    }
+
+
+    public String reverseWords3(String s) {
         if(s==null || s.isBlank()){
             return s;
         }
