@@ -72,4 +72,24 @@ public class LetterCombinationsofaPhoneNumber {
 
         return res;
     }
+
+    public List<String> letterCombinations22(String digits) {
+        List<String> res=new ArrayList<>();
+        if (digits.length()==0){
+            return res;
+        }
+
+        String[] letters={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        res.add("");
+        for (char digit:digits.toCharArray()) {
+            List<String> temp=new ArrayList<>();
+            for (char ch:letters[digit-'0'].toCharArray()) {
+                for(String x:res){
+                    temp.add(x+ch);
+                }
+            }
+            res=temp;
+        }
+        return res;
+    }
 }
