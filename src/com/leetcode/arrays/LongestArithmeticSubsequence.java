@@ -38,7 +38,8 @@ Constraints:
 0 <= A[i] <= 500
 
  */
-public class LongestArithmeticSubsequence {
+public class
+LongestArithmeticSubsequence {
     public int longestArithSeqLength(int[] A) {
         int res = 2,curr, n = A.length;
         Map<Integer, Integer>[] dp = new HashMap[n];

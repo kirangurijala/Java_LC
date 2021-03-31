@@ -1,5 +1,7 @@
 package com.leetcode.strings;
   /*
+  https://leetcode.com/problems/first-unique-character-in-a-string/
+
 387. First Unique Character in a String
 Given a string, find the first non-repeating character in it and return its index. If it doesn't exist, return -1.
 
@@ -33,7 +35,6 @@ public  class FirstUniqueCharacterString {
             return s.indexOf(ch);
           }
         }
-
 
         return -1;
       }

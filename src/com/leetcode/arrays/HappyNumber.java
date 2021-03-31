@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /*
+https://leetcode.com/problems/happy-number/
+
 202. 0Happy Number
 Write an algorithm to determine if a number n is "happy".
 

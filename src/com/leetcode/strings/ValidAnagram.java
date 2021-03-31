@@ -25,18 +25,24 @@ public class ValidAnagram {
     }
 
     public boolean isAnagram(String s, String t) {
-        int[] chars = new int[26];
-        for (int i = 0; i < s.length(); i++) {
-            chars[s.charAt(i) - 'a']++;
-            chars[t.charAt(i) - 'a']--;
+        if(s == null || t == null || s.length()!=t.length()){
+            return false;
         }
 
-        for (int n : chars) {
-            if (n != 0) {
+        int[] count=new int[26];
+        for(char ch:s.toCharArray()){
+            count[ch-'a']++;
+        }
+
+        for(char ch:t.toCharArray()){
+            count[ch-'a']--;
+        }
+
+        for(int n:count){
+            if(n!=0){
                 return false;
             }
         }
 
-        return true;
-    }
+        return true;}
 }

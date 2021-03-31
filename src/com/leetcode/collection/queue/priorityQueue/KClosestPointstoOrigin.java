@@ -40,7 +40,7 @@ public class KClosestPointstoOrigin {
         PriorityQueue<int[]> q=new PriorityQueue<>((a,b)->(b[0]*b[0]+b[1]*b[1])-(a[0]*a[0]+a[1]*a[1]));
         for(int[] point:points){
             q.add(point);
-            while(q.size()>K){
+            if(q.size()>K){
                 q.poll();
             }
         }

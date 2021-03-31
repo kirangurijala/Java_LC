@@ -1,10 +1,6 @@
 package com.leetcode.collection.queue.priorityQueue;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /*
 https://leetcode.com/problems/top-k-frequent-words/
@@ -31,10 +27,42 @@ public class TopKFrequentWords {
       counts.put(word,counts.getOrDefault(word,0)+1);
     }
 
-    PriorityQueue<String> q=new PriorityQueue<>((a,b)->(counts.get(a)).equals(counts.get(b))?a.compareTo(b):counts.get(b)-counts.get(a));
-    for(String word:counts.keySet()){
+  //  PriorityQueue<String> q=new PriorityQueue<>((a,b)->(counts.get(a)).equals(counts.get(b))?a.compareTo(b):counts.get(b)-counts.get(a));
+    PriorityQueue<String> q=new PriorityQueue<>();
+    List<String> listq=new ArrayList<>();
+
+    for(String word:words){
+      System.out.print(q);
       q.add(word);
+      System.out.print(q);
+      System.out.println();
+      listq.add(word);
+      Collections.sort(listq);
+      System.out.println(listq);
+
+
     }
+    q.clear();
+//    for(String word: counts.keySet()){
+//      System.out.print(q);
+//      q.add(word);
+//      System.out.print(q);
+//      System.out.println();
+ //   }
+
+
+
+//    Iterator iterator = q.iterator();
+//
+//    while (iterator.hasNext()) {
+//      System.out.print(iterator.next() + " ");
+//    }
+
+//    for (int i = 0; i <q.size() ; i++) {
+//     // System.out.println(q.peek());
+//      System.out.println(q.poll());
+//    }
+
 
     List<String> topKFrequentWords=new ArrayList();
     while(topKFrequentWords.size()<k){
@@ -44,9 +72,24 @@ public class TopKFrequentWords {
     return topKFrequentWords;
   }
 
+ public List<String> topKFrequentNLOGN(String[] words, int k) {
+   Map<String, Integer> count=new HashMap<>();
+   for(String word:words){
+      count.put(word,count.getOrDefault(word,0)+1);
+    }
+
+    List<String> ls=new ArrayList<>(count.keySet());
+    Collections.sort(ls,(a, b)-> (count.get(a)).equals(count.get(b))?a.compareTo(b):count.get(b)-count.get(a));
+
+    return ls.subList(0,k);
+  }
+
+
+
+
     public static void main(String[] args) {
       TopKFrequentWords solution= new TopKFrequentWords();
-      System.out.println(solution.topKFrequent(new String[]{"i", "love", "leetcode", "i", "love", "coding"},2));
-		  System.out.println(solution.topKFrequent(new String[]{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"},4));
+     System.out.println(solution.topKFrequent(new String[]{"i", "love", "coding","leetcode", "i", "love"},2));
+		//  System.out.println(solution.topKFrequent(new String[]{"the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"},4));
   	}
 }

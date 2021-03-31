@@ -1,6 +1,7 @@
 package com.leetcode.strings;
 
 /*
+https://leetcode.com/problems/add-binary/
 67. Add Binary
  Given two binary strings a and b, return their sum as a binary string.
 

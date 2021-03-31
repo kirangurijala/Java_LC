@@ -56,26 +56,26 @@ public class CompareVersionNumbers {
 
     public int compareVersion(String version1, String version2) {
         String[] s1=version1.split("\\.");
-        String[] s2=version1.split("\\.");
-        int n=Math.max(s1.length, s2.length);
+        String[] s2=version2.split("\\.");
         int v1=0,v2=0;
-        for (int i = 0; i <n ; i++) {
-            if(i< s1.length){
+        int n=Math.max(s1.length,s2.length);
+        for(int i=0;i<n;i++){
+            if(i<s1.length){
                 v1=Integer.parseInt(s1[i]);
-            }else{
+            }else {
                 v1=0;
             }
 
-            if(i< s2.length){
-                v2=Integer.parseInt(s1[i]);
-            }else{
+            if(i<s2.length){
+                v2=Integer.parseInt(s2[i]);
+            }else {
                 v2=0;
             }
 
             if(v1>v2){
                 return 1;
             }else if(v1<v2){
-                return  -1;
+                return -1;
             }
         }
 

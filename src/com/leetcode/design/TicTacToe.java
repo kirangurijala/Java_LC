@@ -78,15 +78,54 @@ Constraints:
 
 */
 public class TicTacToe {
-    int n = 0;
     int[] rows;
     int[] cols;
-    int d1 = 0, d2 = 0;
+    int diag=0,antidiag=0;
 
+    int n=0;
+    /** Initialize your data structure here. */
     public TicTacToe(int n) {
-        this.n = n;
-        rows = new int[n];
-        cols = new int[n];
+        this.n=n;
+        rows=new int[n];
+        cols=new int[n];
+    }
+
+    /** Player {player} makes a move at ({row}, {col}).
+     @param row The row of the board.
+     @param col The column of the board.
+     @param player The player, can be either 1 or 2.
+     @return The current winning condition, can be either:
+     0: No one wins.
+     1: Player 1 wins.
+     2: Player 2 wins. */
+    public int move(int row, int col, int player) {
+        int val=getValue(player);
+        rows[row]=rows[row]+val;
+        cols[col]=cols[col]+val;
+        if(Math.abs(rows[row])==n || (Math.abs(cols[col])==n)){
+            return player;
+        }
+
+        if(row==col){
+            diag=diag+val;
+        }
+
+        if(row+col==n-1){
+            antidiag=antidiag+val;
+        }
+
+        if(Math.abs(diag)==n || (Math.abs(antidiag)==n)){
+            return player;
+        }
+
+        return 0;
+    }
+    private int getValue(int player) {
+        if (player == 1) {
+            return 1;
+        }
+
+        return -1;
     }
 
     public static void main(String[] args) {
@@ -98,35 +137,5 @@ public class TicTacToe {
         System.out.println(solution.move(2, 0, 1));
         System.out.println(solution.move(1, 0, 2));
         System.out.println(solution.move(2, 1, 1));
-    }
-
-    public int move(int row, int col, int player) {
-        int val = getValue(player);
-        rows[row] += val;
-        cols[col] += val;
-        if (rows[row] == Math.abs(n) || cols[col] == Math.abs(n)) {
-            return player;
-        }
-
-        if (row == col) {
-            d1 += val;
-        }
-        if (row + col == n - 1) {
-            d2 += val;
-        }
-
-        if (d1 == Math.abs(n) || d2 == Math.abs(n)) {
-            return player;
-        }
-
-        return 0;
-    }
-
-    private int getValue(int player) {
-        if (player == 1) {
-            return 1;
-        }
-
-        return -1;
     }
 }

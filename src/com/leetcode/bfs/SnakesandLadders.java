@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /*
-https://leetcode.com/problems/snakes-and-ladders/solution/
+https://leetcode.com/problems/snakes-and-ladders/
 On an N x N board, the numbers from 1 to N*N are written boustrophedonically starting from the bottom left of the board, and alternating direction each row.  For example, for a 6 x 6 board, the numbers are written as follows:
 
 

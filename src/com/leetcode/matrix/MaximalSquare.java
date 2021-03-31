@@ -34,17 +34,18 @@ public class MaximalSquare {
     }
     public int maximalSquare(char[][] a) {
         if(a.length == 0) return 0;
-        int m = a.length, n = a[0].length, result = 0;
-        int[][] b = new int[m+1][n+1];
-        for (int i = 1 ; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if(a[i-1][j-1] == '1') {
-                    b[i][j] = Math.min(Math.min(b[i][j-1] , b[i-1][j-1]), b[i-1][j]) + 1;
-                    result = Math.max(b[i][j], result); // update result
+        int m=a.length,n=a[0].length, max=0;
+        int[][] b=new int[m+1][n+1];
+        for (int i = 0; i <m ; i++) {
+            for (int j = 0; j <n ; j++) {
+                if(a[i][j]=='1'){
+                    b[i+1][j+1] = Math.min(Math.min(b[i+1][j], b[i][j]), b[i][j+1]) + 1;
+                    max = Math.max(max, b[i+1][j+1]);
                 }
             }
         }
-        return result*result;
+        return max*max;
+
     }
     public int maximalSquareee(char[][] matrix) {
         int rows = matrix.length, cols = rows > 0 ? matrix[0].length : 0;

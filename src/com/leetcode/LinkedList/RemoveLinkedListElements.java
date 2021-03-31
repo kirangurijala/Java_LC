@@ -1,6 +1,8 @@
 package com.leetcode.LinkedList;
 
 /*
+https://leetcode.com/problems/remove-linked-list-elements/
+
 203. Remove Linked List Elements
 Remove all elements from a linked list of integers that have value val.
 

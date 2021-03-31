@@ -58,4 +58,16 @@ public class MinimumDeletionCosttoAvoidRepeatingLetters {
 
         return min;
     }
+
+    public int minCostNomodify(String s, int[] cost) {
+        if(s==null ||s.isBlank()) return 0;
+        int min = 0, max_cost = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            if (i > 0 && s.charAt(i) !=  s.charAt(i-1))
+                max_cost = 0;
+            min = min+Math.min(max_cost, cost[i]);
+            max_cost = Math.max(max_cost, cost[i]);
+        }
+        return min;
+    }
 }

@@ -3,6 +3,8 @@ package com.leetcode.arrays;
 import java.util.*;
 
 /*
+https://leetcode.com/problems/3sum/
+
 15. 3Sum
 Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
 Notice that the solution set must not contain duplicate triplets.
@@ -24,6 +26,14 @@ public class ThreeSum {
         int arr[] = {-1, 0, 1, 2, -1, -4};
         System.out.println(solution.threeSum(arr));
     }
+
+    //Time Complexity: {O}(n^2). twoSumII is O(n), and we call it n times.
+    ////Sorting the array takes {O}(nlog{n}) so overall complexity is {O}(nlog{n} + n^2)O(nlogn+n2
+    // ). This is asymptotically equivalent to \mathcal{O}(n^2)O(n
+    //2
+    // ).
+    //
+    //Space Complexity: from \mathcal{O}(\log{n})O(logn) to \mathcal{O}(n)O(n), depending on the implementation of the sorting algorithm. For the purpose of complexity analysis, we ignore the memory required for the output.
 
     public List<List<Integer>> threeSum(int[] nums) {
         Set<List<Integer>> res = new HashSet<>();

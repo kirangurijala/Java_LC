@@ -38,82 +38,47 @@ Constraints:
 At most 105 calls will be made to insert, remove, and getRandom.
 There will be at least one element in the data structure when getRandom is called.
  */
-class RandomizedSet extends HashSet<Integer> {
-
+class RandomizedSet {
+    List<Integer> list;
+    Map<Integer,Integer> map;
+    Random r;
     /** Initialize your data structure here. */
     public RandomizedSet() {
-
+        map=new HashMap<>();
+        list=new ArrayList<>();
+        r=new Random();
     }
 
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
-        return super.add(val);
-    }
+        if(list.contains(val)){
+            return false;
+        }
 
-    /** Removes a value from the set. Returns true if the set contained the specified element. */
-    public boolean remove(int val) {
-        return super.remove(val);
-    }
-
-    Random rand = new Random(); //instance of random class
-    /** Get a random element from the set. */
-    public int getRandom() {
-        int upperbound = super.size();
-        //generate random values from 0-super.size
-        int int_random = rand.nextInt(upperbound);
-
-        Integer[] arrayNumbers = super.toArray(new Integer[super.size()]);
-
-        //List<Integer> ls=new ArrayList<>(super);
-        // Collections.shuffle(new ArrayList<>(super));
-        // return ls.get(1);
-        return arrayNumbers[int_random];
-    }
-    public static void main(String[] args) {
-        RandomizedSet solution = new RandomizedSet();
-        int[] arr={1,2,3};
-       // System.out.println(solution.a(arr));
-        //Arrays.stream(solution.sortedSquares(arr)).forEach(n->System.out.print(n+" "));
-    }
-}
-
-class RandomizedSetI {
-    Map<Integer, Integer> map;
-    List<Integer> list;
-    Random rand = new Random();
-
-    /** Initialize your data structure here. */
-    public RandomizedSetI() {
-        map = new HashMap();
-        list = new ArrayList();
-    }
-
-    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
-    public boolean insert(int val) {
-        if (map.containsKey(val)) return false;
-
-        map.put(val, list.size());
-        list.add(list.size(), val);
+        map.put( val, list.size());
+        list.add(val);
         return true;
     }
 
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
-        if (! map.containsKey(val)) return false;
+        if(!list.contains(val)){
+            return false;
+        }
 
-        // move the last element to the place idx of the element to delete
-        int lastElement = list.get(list.size() - 1);
-        int idx = map.get(val);
-        list.set(idx, lastElement);
-        map.put(lastElement, idx);
-        // delete the last element
-        list.remove(list.size() - 1);
+        int loc = map.get(val);
+        if (loc < list.size() - 1 ) { // not the last one than swap the last one with this val
+            int lastone = list.get(list.size() - 1 );
+            list.set( loc , lastone );
+            map.put(lastone, loc);
+        }
         map.remove(val);
+        list.remove(list.size() - 1);
         return true;
     }
 
     /** Get a random element from the set. */
     public int getRandom() {
-        return list.get(rand.nextInt(list.size()));
+        return list.get(r.nextInt(list.size()));
     }
 }

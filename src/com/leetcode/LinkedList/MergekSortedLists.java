@@ -68,9 +68,9 @@ public  class MergekSortedLists {
     if (lists.length==2){
       return  mergeTwoLists(lists[0], lists[1]);
     }
-    ListNode[] a = Arrays.copyOfRange(lists, 0, (lists.length + 1)/2);
-    ListNode[] b = Arrays.copyOfRange(lists, (lists.length + 1)/2, lists.length);
-    return mergeTwoLists(mergeKLists(a),mergeKLists(b));
+    ListNode[] l1 = Arrays.copyOfRange(lists, 0, (lists.length + 1)/2);
+    ListNode[] l2 = Arrays.copyOfRange(lists, (lists.length + 1)/2, lists.length);
+    return mergeTwoLists(mergeKLists(l1),mergeKLists(l2));
   }
   /*
    * Create a preHead (-1) to keep track of result link list, create l to iterate prehead

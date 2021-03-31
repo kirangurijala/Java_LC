@@ -27,6 +27,8 @@ Constraints:
 -107 <= k <= 107
  */
 public class SubarraySumEqualsK {
+    //Time complexity : O(n^2). We need to consider every subarray possible.
+    //Space complexity : O(1)O(1). Constant space is used.
     public int subarraySum(int[] nums, int k) {
         Map<Integer,Integer> map=new HashMap<>();
         map.put(0,1);
@@ -41,7 +43,20 @@ public class SubarraySumEqualsK {
 
         return count;
     }
-
+    //Time complexity : O(n^2). We need to consider every subarray possible.
+    //Space complexity : O(1)O(1). Constant space is used.
+    public int subarraySumBrute(int[] nums, int k) {
+        int count = 0;
+        for (int start = 0; start < nums.length; start++) {
+            int sum=0;
+            for (int end = start; end < nums.length; end++) {
+                sum+=nums[end];
+                if (sum == k)
+                    count++;
+            }
+        }
+        return count;
+    }
     public static void main(String[] args) {
         SubarraySumEqualsK solution = new SubarraySumEqualsK();
         int[] arr={1,2,3};

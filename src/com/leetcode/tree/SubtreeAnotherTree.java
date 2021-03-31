@@ -79,7 +79,7 @@ class SubtreeAnotherTree {
         }
 
 
-        return isSame(s.left, t) || isSame(s.right, t);
+        return isSubtree(s.left, t) || isSubtree(s.right, t);
     }
 
     private boolean isSame(TreeNode s, TreeNode t) {

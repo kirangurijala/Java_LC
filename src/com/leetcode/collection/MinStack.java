@@ -3,7 +3,9 @@ package com.leetcode.collection;
 import java.util.Stack;
 
 /*
-155. Min Stack
+https://leetcode.com/problems/min-stack/
+155.
+Min Stack
 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
     push(x) -- Push element x onto stack.

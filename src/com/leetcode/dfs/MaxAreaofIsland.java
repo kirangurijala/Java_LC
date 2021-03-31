@@ -33,35 +33,66 @@ public class MaxAreaofIsland {
                 {0, 0, 0, 0, 0}};
         System.out.println(solution.maxAreaOfIsland(arr));
     }
-
+    int n=0;
     public int maxAreaOfIsland(int[][] grid) {
-
-        if (grid == null || grid.length == 0) {
+        if(grid == null || grid.length ==0){
             return 0;
         }
-
-        for (int i = 0; i < grid.length ; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
+        int max=0;
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
                 if(grid[i][j]==1){
-                    dfs(grid,i,j, 0);
+                    n=0;
+                    n=dfs(i,j,grid);
+                    if(n>max){
+                        max=n;
+                    }
                 }
             }
         }
 
         return max;
     }
-    int max=0;
-    private void dfs(int[][] grid, int i, int j,int n) {
-        if(i<0||j<0||i>grid.length-1||j>grid[0].length-1||grid[i][j]==0){
-            return;
+
+
+    private int dfs(int r,int c,int[][] grid){
+        int nr=grid.length;
+        int nc=grid[0].length;
+        if(r<0||c<0||r>=nr||c>=nc||grid[r][c]==0){
+            return 0;
         }
 
-        grid[i][j]=0;
+        grid[r][c] = 0;
         n++;
-        dfs(grid, i+1, j,n);
-        dfs(grid, i-1, j,n);
-        dfs(grid, i, j+1,n);
-        dfs(grid, i, j-1,n);
-        max=Math.max(max,n);
+        dfs(r-1,c,grid);
+        dfs(r+1,c,grid);
+        dfs(r,c-1,grid);
+        dfs(r,c+1,grid);
+
+        return n;
+    }
+
+
+    public int maxAreaOfIsland3(int[][] grid) {
+        int result = 0;
+        for(int i =0;i<grid.length;i++){
+            for(int j =0;j<grid[0].length;j++){
+                if(grid[i][j] == 1){
+                    int count = dfs3(grid, i, j);
+                    if(count > result) result = count;
+                }
+            }
+        }
+        return result;
+    }
+
+    public int dfs3(int[][] grid, int i, int j){
+        if(i<0 || i>= grid.length || j<0 || j>=grid[0].length || grid[i][j] == 0){
+            return 0;
+        }
+
+        grid[i][j] = 0;
+
+        return dfs3(grid, i-1,j) + dfs3(grid, i,j-1) + dfs3(grid, i+1,j) + dfs3(grid, i,j+1)+1;
     }
 }
