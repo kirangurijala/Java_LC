@@ -21,8 +21,7 @@ Explanation:
 6(2) + 8(2) = 100
 1(2) + 0(2) + 0(2) = 1
 */
-public class
-HappyNumber {
+public class HappyNumber {
     public static boolean isHappy(int n) {
         Set<Integer> set = new HashSet<>();
         while (n != 1) {

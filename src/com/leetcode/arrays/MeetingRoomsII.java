@@ -1,6 +1,7 @@
 package com.leetcode.arrays;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 /*
 https://leetcode.com/problems/meeting-rooms-ii/
@@ -25,7 +26,28 @@ public class MeetingRoomsII {
         System.out.println(sol.minMeetingRooms(arr));
     }
 
+    /*
+     * Time complexity : O(nlog(n)).
+     * Space complexity : O(n).
+     */
     public int minMeetingRooms(int[][] intervals) {
+        Arrays.sort(intervals,(a,b)->a[0]-b[0]);
+        PriorityQueue<int[]> pq=new PriorityQueue<>((a,b)->a[1]-b[1]);
+        for (int[] interval:intervals) {
+            if(!pq.isEmpty()&&pq.peek()[1]<=interval[0]){
+                pq.poll();
+            }
+            pq.add(interval);
+        }
+
+        return pq.size();
+    }
+
+    /*
+     * Time complexity : O(nlog(n)).
+     * Space complexity : O(n).
+     */
+    public int minMeetingRoomsBysort(int[][] intervals) {
         int[] starts = new int[intervals.length];
         int[] ends = new int[intervals.length];
         int index = 0;
@@ -37,7 +59,7 @@ public class MeetingRoomsII {
         Arrays.sort(starts);
         Arrays.sort(ends);
         int rooms = 0, endptr = 0;
-        for (int i = 0; i < starts.length; i++) {
+        for (int i = 0; i < starts.length; i++) {//Note we not iterating entire
             if (starts[i] < ends[endptr]) {
                 rooms++;
             } else {

@@ -39,8 +39,7 @@ public class ProductofArrayExceptSelf {
         int prod=1;
         res[0]=1;
         for (int i = 1; i < nums.length; i++) {
-            prod=prod*nums[i-1];
-            res[i]=prod;
+            res[i]= res[i-1]*nums[i-1];
         }
 
         prod=1;

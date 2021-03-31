@@ -50,6 +50,7 @@ public class FindMinimuminRotatedSortedArray {
         if (num.length == 1) {
             return num[0];
         }
+
         int l = 0, r = num.length - 1;
         while (l < r) {
             int m = (l + r) / 2;
@@ -64,6 +65,8 @@ public class FindMinimuminRotatedSortedArray {
         }
         return num[l];
     }
+
+    //brute force compare each element
 
     public static void main(String[] args) {
         int arr[] = {4, 5, 6, 7, 0, 1, 2};

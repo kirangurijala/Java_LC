@@ -5,22 +5,22 @@ package com.leetcode.strings;
  */
 public class
 CanFormPalindrome {
-    static final int NO_OF_CHARS = 256;
+    static final int NO_OF_CHARS = 128;
 
     /* function to check whether characters of
       a string can form a palindrome */
     static boolean canFormPalindrome(String str) {
-        int[] arr = new int[256];
+        int[] counts = new int[NO_OF_CHARS];
 
-        for (int i = 0; i < str.length(); i++)
-            arr[str.charAt(i)]++;
+        for (char ch:str.toCharArray())
+            counts[ch]++;
 
-        int odd = 0;
+        int oddsCount = 0;
         for (int i = 0; i < 256; i++) {
-            if ((arr[i] %2) == 1)
-                odd++;
+            if ((counts[i] %2) == 1)
+                oddsCount++;
 
-            if (odd > 1)
+            if (oddsCount > 1)
                 return false;
         }
 

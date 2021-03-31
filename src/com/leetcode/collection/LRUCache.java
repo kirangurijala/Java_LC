@@ -40,6 +40,16 @@ lRUCache.get(4);    // return 4
 
  */
 public class LRUCache extends LinkedHashMap<Integer,Integer> {
+  /*
+   * Extend LRU class to LinkedHash <int,int>
+   * LRUCache constructor, cal super metho by passing capacity,loadfact(0.75f),assessorder true(LRU)
+   * get, cal super.getOrDefault with default -1
+   * put, cal super.put
+   * Add a over ride method removeEldestEntry with parameter Map.Entry<int,int>
+   *  return size()>capacity
+   * Time complexity of get or put: O(1)
+   * Space complexity : O(capacity) since the space is used only for a hashmap and double linked list with at most capacity + 1 elements
+   */
   int capacity=0;
   public LRUCache(int capacity){
     super(capacity,0.75f,true);

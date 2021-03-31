@@ -1,4 +1,4 @@
-package com.leetcode.arrays;
+package com.leetcode.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -36,6 +36,8 @@ prerequisites[i].length == 2
 All the pairs prerequisites[i] are unique.
  */
 public class CourseSchedule {
+   //Time Complexity: O(|E| + |V|) where |V|∣V∣ is the number of courses, and |E|∣E∣ is the number of dependencies.
+   //Space Complexity: O(|E| + |V|) where |V|∣V∣ is the number of courses, and |E|∣E∣ is the number of dependencies.
    public boolean canFinish(int numCourses, int[][] prerequisites) {
       if (numCourses == 0 || prerequisites.length == 0) return true;
 

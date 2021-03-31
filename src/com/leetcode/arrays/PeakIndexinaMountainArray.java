@@ -1,4 +1,4 @@
-package com.leetcode;
+package com.leetcode.arrays;
 
 /*
 https://leetcode.com/problems/peak-index-in-a-mountain-array/

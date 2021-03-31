@@ -1,5 +1,6 @@
 package com.leetcode.arrays;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,12 +29,6 @@ Constraints:
 -109 <= nums[i] <= 109
  */
 public class LongestConsecutiveSequence {
-    public static void main(String[] args) {
-        LongestConsecutiveSequence solution = new LongestConsecutiveSequence();
-        int[] arr={100,4,200,1,3,2};
-        System.out.println(solution.longestConsecutive(arr));
-    }
-
     public int longestConsecutive(int[] nums) {
         Set<Integer> set=new HashSet<>();
         for (int n:nums) {
@@ -45,15 +40,44 @@ public class LongestConsecutiveSequence {
             if(!set.contains(n-1)){
                 int curr=n;
                 int count=1;
-                    while(set.contains(curr+1)) {
-                        count++;
-                        curr++;
-                    }
-
-                    max=Math.max(max,count);
+                while(set.contains(curr+1)) {
+                    count++;
+                    curr++;
                 }
+                max=Math.max(max,count);
+            }
         }
 
         return max;
+    }
+
+    public static void main(String[] args) {
+        LongestConsecutiveSequence solution = new LongestConsecutiveSequence();
+        int[] arr={100,4,200,1,3,2};
+        System.out.println(solution.longestConsecutive(arr));
+    }
+
+    public int bruteForceLongestConsecutive(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        Arrays.sort(nums);
+
+        int max = 0,  curr = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1]) {
+                continue;
+            }
+
+            if (nums[i] == nums[i - 1] + 1) {
+                curr++;
+                continue;
+            }
+
+            max = Math.max(max, curr);
+            curr = 1;
+        }
+
+        return Math.max(max, curr);
     }
 }

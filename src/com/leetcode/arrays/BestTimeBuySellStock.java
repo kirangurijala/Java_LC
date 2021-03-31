@@ -33,14 +33,6 @@ public class BestTimeBuySellStock {
             min = Math.min(min, price);
             profit = price - min;
             maxProfit = Math.max(maxProfit, profit);
-            //      if(price<min){
-//        min=price;
-//      }
-//      profit=price-min;
-//      maxProfit=Math.max(maxProfit,profit);
-//      if(profit>maxProfit){
-//        maxProfit = profit;
-//      }
         }
 
         return maxProfit;

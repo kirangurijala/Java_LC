@@ -1,7 +1,6 @@
 package com.leetcode.arrays;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /*
 https://leetcode.com/problems/find-the-duplicate-number/
@@ -44,33 +43,6 @@ nums.length == n + 1
 All the integers in nums appear only once except for precisely one integer which appears two or more times.
 */
 public class FindtheDuplicateNumber {
-    public static void main(String[] args) {
-        FindtheDuplicateNumber solution = new FindtheDuplicateNumber();
-        int arr[] = {1, 2, 3, 2};
-        System.out.println(solution.findDuplicate(arr));
-    }
-    public int findDuplicate2(int[] nums) {
-        for (int n : nums) {
-            int index = Math.abs(n) - 1;
-            if (nums[index] < 0)
-                return index+1;
-            nums[index] = -nums[index];
-        }
-        return 0;
-
-    }
-    public int findDuplicate3(int[] nums) {
-        Set<Integer> seen = new HashSet<Integer>();
-        for (int num : nums) {
-            if (seen.contains(num)) {
-                return num;
-            }
-            seen.add(num);
-        }
-
-        return -1;
-    }
-
     public int findDuplicate(int[] nums) {
         int slow = nums[0];
         int fast = nums[slow];
@@ -87,5 +59,61 @@ public class FindtheDuplicateNumber {
             fast = nums[fast];
         }
         return slow;
+    }
+
+    public static void main(String[] args) {
+        FindtheDuplicateNumber solution = new FindtheDuplicateNumber();
+        int[] arr = {1, 2, 3, 2};
+        System.out.println(solution.findDuplicate(arr));
+    }
+
+    public int modifyArrayFindDuplicate(int[] nums) {
+        for (int n : nums) {
+            int index = Math.abs(n) - 1;
+            if (nums[index] < 0)
+                return index+1;
+            nums[index] = -nums[index];
+        }
+
+        return 0;
+    }
+
+    public int setFindDuplicate(int[] nums) {
+        Set<Integer> seen = new HashSet<>();
+        for (int num : nums) {
+            if (seen.contains(num)) {
+                return num;
+            }
+
+            seen.add(num);
+        }
+
+        return -1;
+    }
+
+    //Time complexity : O(nlogn)+O(n) ≃O(nlogn).
+    public int sortFindDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1]) {
+                return nums[i];
+            }
+        }
+
+        return -1;
+    }
+
+    //Time complexity : 0(n*n)
+    //Space complexity : 0(n)
+    public int bruteForceFindDuplicate(int[] nums) {
+       for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] == nums[i]) {
+                    return nums[i];
+                }
+            }
+        }
+
+        return -1;
     }
 }

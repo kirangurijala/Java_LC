@@ -36,20 +36,9 @@ Constraints:
 
  */
 public class LetterCombinationsofaPhoneNumber {
-    public static void main(String[] args) {
-        double d=11/3;
-        System.out.println(d);
-        LetterCombinationsofaPhoneNumber solution = new LetterCombinationsofaPhoneNumber();
-        int arr[] = {1, 2, 3};
-        System.out.println(solution.letterCombinations("456"));
-//        for (int n:solution.twoSum(arr,9)) {
-//            System.out.print(n+" ");
-//        }
-    }
-
     public List<String> letterCombinations(String digits) {
         List<String> res=new ArrayList<>();
-        String digitletter[] = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        String[] digitletter = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
         if (digits.length()==0){
             return res;
         }
@@ -71,6 +60,11 @@ public class LetterCombinationsofaPhoneNumber {
         }
 
         return res;
+    }
+
+    public static void main(String[] args) {
+        LetterCombinationsofaPhoneNumber solution = new LetterCombinationsofaPhoneNumber();
+        System.out.println(solution.letterCombinations("456"));
     }
 
     public List<String> letterCombinations22(String digits) {

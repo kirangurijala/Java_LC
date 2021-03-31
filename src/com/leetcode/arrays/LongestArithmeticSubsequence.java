@@ -39,28 +39,27 @@ Constraints:
 
  */
 public class LongestArithmeticSubsequence {
-    public static void main(String[] args) {
-        LongestArithmeticSubsequence solution = new LongestArithmeticSubsequence();
-        int[] arr={1,2,3};
-        System.out.println(solution.longestArithSeqLength(arr));
+    public int longestArithSeqLength(int[] A) {
+        int res = 2,curr, n = A.length;
+        Map<Integer, Integer>[] dp = new HashMap[n];
+        for (int i = 0; i < A.length; i++) {
+            dp[i] = new HashMap<>();
+        }
+
+        for (int i = 1; i < A.length; i++) {
+            for (int j = 0; j < i; j++) {
+                int d = A[i] - A[j];
+                curr = dp[j].getOrDefault(d, 1) + 1;
+                dp[i].put(d, curr);
+                res = Math.max(res, curr);
+            }
+        }
+
+        return res;
     }
 
-
-        public int longestArithSeqLength(int[] A) {
-            int res = 2,curr=0, n = A.length;
-            HashMap<Integer, Integer>[] dp = new HashMap[n];
-            for (int i = 0; i < A.length; i++) {
-                dp[i] = new HashMap<>();
-            }
-
-            for (int i = 1; i < A.length; i++) {
-                for (int j = 0; j < i; j++) {
-                    int d = A[i] - A[j];
-                    curr = dp[j].getOrDefault(d, 1) + 1;
-                    dp[i].put(d, curr);
-                    res = Math.max(res, curr);
-                }
-            }
-            return res;
+    public static void main(String[] args) {
+        LongestArithmeticSubsequence solution = new LongestArithmeticSubsequence();
+        System.out.println(solution.longestArithSeqLength(new int[]{20,1,15,3,10,5,8}));
     }
 }

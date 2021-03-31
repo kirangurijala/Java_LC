@@ -41,9 +41,7 @@ The sum of lists[i].length won't exceed 10^4.
 
     */
 
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Definition for singly-linked list.
@@ -54,85 +52,120 @@ import java.util.Queue;
  * }
  */
 public  class MergekSortedLists {
-  //Time complexity : O(kN)O(kN) where \text{k}k is the number of linked lists.
-  //
-  //We can merge two sorted linked list in O(n)O(n) time where nn is the total number of nodes in two lists.
-  //Sum up the merge process and we can get: O(\sum_{i=1}^{k-1} (i*(\frac{N}{k}) + \frac{N}{k})) = O(kN)O(∑
-  //i=1
-  //k−1
-  //​
-  // (i∗(
-  //k
-  //N
-  //​
-  // )+
-  //k
-  //N
-  //​
-  // ))=O(kN).
-  //Space complexity : O(1)O(1)
-  //
-  //We can merge two sorted linked list in O(1)O(1) space.
-  public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-    if (l1 == null) return l2;
-    if (l2 == null) return l1;
-
-    ListNode head=null;
-    ListNode former=null;
-    while (l1!=null&&l2!=null) {
-      if (l1.val>l2.val) {
-        if (former==null) former=l2; else former.next=l2;
-        if (head==null) head=former; else former=former.next;
-        l2=l2.next;
-      } else {
-        if (former==null) former=l1; else former.next=l1;
-        if (head==null) head=former; else former=former.next;
-        l1=l1.next;
-      }
+  /*
+   * split array into 2, recurrsion on splited on arrray until it has one or twoelements
+   *  if one element return,twoelements merge those elements
+   * Time complexity : (KN) where k is the number of linked lists.
+   * Space complexity : O(1)
+   */
+  public ListNode mergeKLists(ListNode[] lists) {
+    if (lists.length==0) {
+      return null;
     }
-    if (l2!=null) l1=l2;
-    former.next=l1;
-    return head;
+    if (lists.length==1){
+      return lists[0];
+    }
+    if (lists.length==2){
+      return  mergeTwoLists(lists[0], lists[1]);
+    }
+    ListNode[] a = Arrays.copyOfRange(lists, 0, (lists.length + 1)/2);
+    ListNode[] b = Arrays.copyOfRange(lists, (lists.length + 1)/2, lists.length);
+    return mergeTwoLists(mergeKLists(a),mergeKLists(b));
+  }
+  /*
+   * Create a preHead (-1) to keep track of result link list, create l to iterate prehead
+   * loop through l1&&L2 not null
+   *  if l1 val is less than or equal l2 val, assign l1 to l.next..i.e l1.next=l1,else l.next=l2
+   * After the loop check l1or l2 null, if l1 is null l.next=l2, else l.next =l1
+   * return preHead.next(Don't return l beacuse l is used only for iteration when it reaches end its val is null)
+   * Time complexity : O(n + m)
+   * Space complexity : O(1)
+   */
+  public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    // maintain an unchanging reference to node ahead of the return node.
+    ListNode prehead = new ListNode(-1);
+    ListNode l = prehead;
+    while (l1 != null && l2 != null) {
+      if (l1.val <= l2.val) {
+        l.next = l1;
+        l1 = l1.next;
+      } else {
+        l.next = l2;
+        l2 = l2.next;
+      }
+      l = l.next;
+    }
 
+    // exactly one of l1 and l2 can be non-null at this point, so connect
+    // the non-null list to the end of the merged list.
+    if(l1!=null){
+      l.next=l1;
+    }else{
+      l.next=l2;
+    }
+
+    return prehead.next;
   }
 
-  public ListNode mergeKLists(List<ListNode> lists) {
-    if (lists.size()==0) return null;
-    if (lists.size()==1) return lists.get(0);
-    if (lists.size()==2) return mergeTwoLists(lists.get(0), lists.get(1));
-    return mergeTwoLists(mergeKLists(lists.subList(0, lists.size()/2)),
-            mergeKLists(lists.subList(lists.size()/2, lists.size())));
-  }
+  /*
+   * loop through all list
+   *  Add values to PriorityQueue
+   * Create a preHead (-1) to keep track of result link list, Assign curr to prehead to iterate the prehead
+   * loop through PriorityQueue
+   *  Add nodes to curr (curr.next=new ListNode(pq.poll()),curr=curr.next)
+   * return preHead.next(Don't return curr beacuse curr is used only for iteration when it reaches end its val is null)
+   * Time complexity : (Nlogk) where k is the number of linked lists.
+   * Space complexity : O(n)
+   */
+  public ListNode priorityQueueMergeKLists(ListNode[] lists) {//
+      Queue<Integer> q=new PriorityQueue<>();
+      for(ListNode ls:lists){
+        while(ls!=null){
+          q.add(ls.val);
+          ls=ls.next;
+        }
+      }
 
-  //Time complexity : O(N\log k)O(Nlogk) where \text{k}k is the number of linked lists.
-  //
-  //The comparison cost will be reduced to O(\log k)O(logk) for every pop and insertion to priority queue. But finding the node with the smallest value just costs O(1)O(1) time.
-  //There are NN nodes in the final linked list.
-  //Space complexity :
-  //
-  //O(n)O(n) Creating a new linked list costs O(n)O(n) space.
-  //O(k)O(k) The code above present applies in-place method which cost O(1)O(1) space. And the priority queue (often implemented with heaps) costs O(k)O(k) space (it's far less than NN in most situations).
+      ListNode preHead=new ListNode(0);
+      ListNode curr=preHead;
+      while(!q.isEmpty()){
+        curr.next=new ListNode(q.poll());
+        curr=curr.next;
+      }
 
-  public ListNode mergeKLists(ListNode[] lists) {//
-    Queue<Integer> q=new PriorityQueue<>();
+      return preHead.next;
+    }
+
+  /*
+   * loop through all list
+   *  Add values to nodes list
+   * Create a preHead (-1) to keep track of result link list, Assign curr to prehead to iterate the prehead
+   * loop through nodes
+   *  Add nodes to curr (curr.next=new ListNode(node.val),curr=curr.next)
+   * return preHead.next(Don't return curr beacuse curr is used only for iteration when it reaches end its val is null)
+   * Time complexity : (NlogN) where N is the number of linked nodes.
+   * Space complexity : O(n)
+   */
+  public ListNode bruteForceMergeKLists(ListNode[] lists) {//
+    List<ListNode> nodes=new ArrayList<>();
     for(ListNode ls:lists){
       while(ls!=null){
-        q.add(ls.val);
+        nodes.add(ls);
         ls=ls.next;
       }
     }
 
-   ListNode head=new ListNode(0);
-    ListNode curr=head;
-    while(!q.isEmpty()){
-      curr.next=new ListNode(q.poll());
+    Collections.sort(nodes,(a,b)->a.val-b.val);
+
+    ListNode preHead=new ListNode(0);
+    ListNode curr=preHead;
+    for(ListNode node:nodes){
+      curr.next=new ListNode(node.val);
       curr=curr.next;
     }
 
-return head.next;
+    return preHead.next;
   }
-
-
 
   public static void main(String[] args) {
     ListNode ls1=new ListNode(1,null);

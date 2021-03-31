@@ -1,7 +1,5 @@
-package com.leetcode.arrays.topK;
+package com.leetcode.collection.queue.priorityQueue;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.PriorityQueue;
 
 /*

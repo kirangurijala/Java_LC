@@ -27,7 +27,7 @@ There is no index that satisfies the conditions in the problem statement.
 public class FindPivotIndex {
     public static void main(String[] args) {
         FindPivotIndex solution = new FindPivotIndex();
-        int arr[] = {1, 2, 3};
+        int[] arr = {1, 2, 3};
         System.out.println(solution.pivotIndex(arr));
     }
 

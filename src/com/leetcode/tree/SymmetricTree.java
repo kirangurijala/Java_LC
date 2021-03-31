@@ -63,7 +63,6 @@ public class SymmetricTree {
             return true;
         }
 
-
         return isSame(root.left, root.right);
     }
 

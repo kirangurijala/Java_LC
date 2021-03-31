@@ -29,7 +29,6 @@ The numbrt of the node in the tree will be in the range [0, 1000].
 -1000 <= Node.val <= 1000
 */
 public class CountUnivalueSubtrees {
-
     int count;
 
     public int countUnivalSubtrees(TreeNode root) {

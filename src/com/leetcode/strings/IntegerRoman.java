@@ -1,5 +1,8 @@
 package com.leetcode.strings;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /*
 https://leetcode.com/problems/integer-to-roman/
 

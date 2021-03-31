@@ -1,4 +1,4 @@
-package com.leetcode.strings;
+package com.leetcode.bfs;
 
 import java.util.*;
 

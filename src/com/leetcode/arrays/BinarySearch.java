@@ -29,14 +29,9 @@ Note:
  */
 public class BinarySearch {
     public static void main(String[] args) {
-        double d=11/3;
-        System.out.println(d);
-        BinarySearch solution = new BinarySearch();
-        int arr[] = {1, 2, 3};
-        System.out.println(solution.search(arr,2));
-//        for (int n:solution.twoSum(arr,9)) {
-//            System.out.print(n+" ");
-//        }
+       BinarySearch solution = new BinarySearch();
+        int arr[] = {2, 3,4,5,6,7,8,9};
+        System.out.println(solution.search(arr,6));
     }
 
     public int search(int[] nums, int target) {

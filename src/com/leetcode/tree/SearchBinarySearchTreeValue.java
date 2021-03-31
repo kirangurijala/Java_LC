@@ -49,7 +49,9 @@ public class SearchBinarySearchTreeValue {
         while(root!=null){
             if(root.val==val){
                 return root;
-            }else if(root.val>val){
+            }
+
+            if(root.val>val){
                 root=root.left;
             }else{
                 root=root.right;

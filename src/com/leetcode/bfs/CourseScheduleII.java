@@ -1,4 +1,4 @@
-package com.leetcode.arrays;
+package com.leetcode.bfs;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -44,6 +44,8 @@ ai != bi
 All the pairs [ai, bi] are distinct.
  */
 public class CourseScheduleII {
+    //Time Complexity: O(|E| + |V|) where |V|∣V∣ is the number of courses, and |E|∣E∣ is the number of dependencies.
+    //Space Complexity: O(|E| + |V|) where |V|∣V∣ is the number of courses, and |E|∣E∣ is the number of dependencies.
     public int[] findOrder(int numCourses, int[][] prerequisites) {
         if (numCourses == 0) return null;
         // Convert graph presentation from edges to indegree of adjacent list.
@@ -69,14 +71,15 @@ public class CourseScheduleII {
 
         // How many courses don't need prerequisites.
         while (!queue.isEmpty()) {
-            int finishedPrerequisite = queue.poll(); // Already finished this prerequisite course.
+            int finishedCourse = queue.poll(); // Already finished this prerequisite course.
             for (int[] prerequisite : prerequisites) {
-                if (prerequisite[1] == finishedPrerequisite) {
-                    indegree[prerequisite[0]]--;
-                    if (indegree[prerequisite[0]] == 0) {
+                if (prerequisite[1] == finishedCourse) {
+                    int finishedPrerequisite = prerequisite[0];
+                    indegree[finishedPrerequisite]--;
+                    if (indegree[finishedPrerequisite] == 0) {
                         // If indegree is zero, then add the course to the order.
-                        order[index++] = prerequisite[0];
-                        queue.offer(prerequisite[0]);
+                        order[index++] = finishedPrerequisite;
+                        queue.offer(finishedPrerequisite);
                     }
                 }
             }

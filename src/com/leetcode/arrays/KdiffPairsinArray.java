@@ -64,12 +64,18 @@ public class KdiffPairsinArray {
             map.put(n, map.getOrDefault(n, 0) + 1);
         }
 
-        for (int key : map.keySet()) {
-            if (k == 0) {
-                if (map.get(key) > 0) {
+        if (k == 0) {
+            for (int key : map.keySet()) {
+                if (map.get(key) > 1) {
                     count++;
                 }
-            } else if (map.containsKey(key + k)) {
+            }
+
+            return count;
+        }
+
+        for (int key : map.keySet()) {
+            if (map.containsKey(key + k)) {
                 count++;
             }
         }

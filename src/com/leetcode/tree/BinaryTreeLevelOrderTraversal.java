@@ -65,6 +65,21 @@ public class BinaryTreeLevelOrderTraversal {
         System.out.println(invertBinaryTree.levelOrder(root));
     }
 
+    /*
+     * Apply BFS with a zigzag variable
+     * Add root to q,ziqzag to false
+     * loop to queue
+     *   create new list to keep the elements in same level
+     *   poll the element from q assign to size
+     *   loop through q elements for o to size
+     *       poll q elements add to levelNodes
+     *           IF ZIGZAG is true add to list start of list(zero position) else add to end of list
+     *       if node left is not null add left element
+     *       if node right is not null add right element
+     *   after for loop add levelNodes to res list
+     *  Time complexity : O(n)
+     *  Space complexity : O(n)
+     */
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> res= new ArrayList<>();
         if(root==null){
@@ -74,11 +89,11 @@ public class BinaryTreeLevelOrderTraversal {
         Queue<TreeNode> q=new LinkedList<>();
         q.add(root);
         while(!q.isEmpty()){
-            List<Integer> level=new ArrayList<>();
+            List<Integer> levelNodes=new ArrayList<>();
             int count=q.size();
             for(int i=0;i<count;i++){
                 TreeNode node=q.poll();
-                level.add(node.val);
+                levelNodes.add(node.val);
                 if(node.left!=null){
                     q.add(node.left);
                 }
@@ -87,7 +102,7 @@ public class BinaryTreeLevelOrderTraversal {
                 }
             }
 
-            res.add(level);
+            res.add(levelNodes);
         }
 
         return res;

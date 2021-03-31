@@ -1,4 +1,4 @@
-package com.leetcode.arrays.topK;
+package com.leetcode.collection.queue.priorityQueue;
 /*
 1481. Least Number of Unique Integers after K Removals
       Given an array of integers arr and an integer k. Find the least number of unique integers after removing exactly k elements.

@@ -45,22 +45,24 @@ public class HandofStraights {
     }
 
     public boolean isNStraightHand(int[] hand, int W) {
-        Map<Integer,Integer> counts=new TreeMap<>();
-        for(int n:hand){
+        Map<Integer,Integer> counts=new TreeMap<>();/////TREEEEEEEEEEEEEEEEEE MAP
+        for (int n:hand) {
             counts.put(n,counts.getOrDefault(n,0)+1);
         }
 
-        for(int key:counts.keySet()){
-            if(counts.get(key)<=0){
+        //[1 1  2 1  3 2  4 2  51  6 1] k=4//O(N∗(N/W))
+        for (int key:counts.keySet()){
+            Integer count = counts.get(key);
+            if(count <=0){
                 continue;
             }
 
-            for(int i=W-1;i>=0;i--){
-                if(counts.getOrDefault(key+i,0)<counts.get(key)){
+            for(int i=0;i<W;i++){
+                if(counts.getOrDefault(i+key,0)< count){
                     return false;
                 }
 
-                counts.put(key+i,counts.get(key+i)-counts.get(key));
+                counts.put(i+key,counts.get(i+key)- count);
             }
         }
 

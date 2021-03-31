@@ -38,36 +38,34 @@ Constraints:
 1 <= nums[i] <= 109
  */
 public class DivideArrayinSetsofKConsecutiveNumbers {
-    public static void main(String[] args) {
-        DivideArrayinSetsofKConsecutiveNumbers solution = new DivideArrayinSetsofKConsecutiveNumbers();
-        System.out.println(solution.isPossibleDivide(new int[]{1,2,3,3,4,4,5,6},4));
-    }
-
-
-//nums = [1,2,3,3,4,4,5,6], k = 4
+    //nums = [1,2,3,3,4,4,5,6], k = 4
     public boolean isPossibleDivide(int[] nums, int k) {
         Map<Integer,Integer> counts=new TreeMap<>();/////TREEEEEEEEEEEEEEEEEE MAP
         for (int n:nums) {
             counts.put(n,counts.getOrDefault(n,0)+1);
         }
 
-
         //[1 1  2 1  3 2  4 2  51  6 1] k=4
         for (int key:counts.keySet()){
-            if(counts.get(key)<=0){
+            Integer count = counts.get(key);
+            if(count <=0){
                 continue;
             }
 
-            for(int i=k-1;i>=0;i--){
-                if(counts.getOrDefault(i+key,0)<counts.get(key)){
+            for(int i=0;i<k;i++){
+                if(counts.getOrDefault(i+key,0)< count){
                     return false;
                 }
 
-                counts.put(i+key,counts.get(i+key)-counts.get(key));
+                counts.put(i+key,counts.get(i+key)- count);
             }
         }
 
-
         return true;
+    }
+
+    public static void main(String[] args) {
+        DivideArrayinSetsofKConsecutiveNumbers solution = new DivideArrayinSetsofKConsecutiveNumbers();
+        System.out.println(solution.isPossibleDivide(new int[]{1,2,3,3,4,4,5,6},4));
     }
 }

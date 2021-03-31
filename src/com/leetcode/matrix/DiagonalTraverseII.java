@@ -1,9 +1,6 @@
 package com.leetcode.matrix;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /*
 https://leetcode.com/problems/diagonal-traverse-ii/
@@ -41,16 +38,7 @@ There at most 10^5 elements in nums.
 
 */
 public class DiagonalTraverseII {
-    public static void main(String[] args) {
-        DiagonalTraverseII solution = new DiagonalTraverseII();
-        char arr[][] = {{'1', '1', '1', '1', '0'},
-                {'1', '1', '0', '1', '0'},
-                {'1', '1', '0', '0', '0'},
-                {'0', '0', '0', '0', '0'}};
-
-        System.out.println(solution.findDiagonalOrder(null));
-    }
-    public int[] findDiagonalOrder(List<List<Integer>> nums) {
+      public int[] findDiagonalOrder(List<List<Integer>> nums) {
         Map<Integer,List<Integer>> map=new HashMap<>();
         int rows=nums.size();
         int n=0;
@@ -72,5 +60,15 @@ public class DiagonalTraverseII {
         }
 
         return arr;
+    }
+
+    public static void main(String[] args) {
+        DiagonalTraverseII solution = new DiagonalTraverseII();
+        int[][] arr = {{1, 1, 1, 1, 0},
+                {1, 1, 0, 1, 0},
+                {1, 1, 0, 0, 0},
+                {0, 0, 0, 0, 0}};
+
+       System.out.println(solution.findDiagonalOrder(null));
     }
 }

@@ -56,7 +56,31 @@ class Node {
 }
 
 public  class CopyListRandomPointer {
-  public Node copyRandomList(Node head) {
+  /*
+   * Assign node to Head to keep track of elements
+   * Create a nodes map, put curr node and a new node with current node val, node=node.next
+   * loop through map keys assign next,rondom to map of node.next,node.rondom
+   * return nodes.get(head)
+   * Time complexity : O(n)
+   * Space complexity : O(n)
+   */
+    public Node copyRandomList(Node head) {
+      Map<Node,Node> nodes=new HashMap<>();
+      Node curr=head;
+      while(curr!=null){
+        nodes.put(curr,new Node(curr.val));
+        curr=curr.next;
+      }
+
+      for(Node node: nodes.keySet()){
+        nodes.get(node).next=nodes.get(node.next);
+        nodes.get(node).random=nodes.get(node.random);
+      }
+
+      return nodes.get(head);
+    }
+
+  public Node iterataecopyRandomList(Node head) {
     if(head ==null){
       return null;
     }
