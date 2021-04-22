@@ -13,9 +13,9 @@ Follow up:
 A linked list can be reversed either iteratively or recursively. Could you implement both?
 
     */
-class ListNode {
-      int val;
-      ListNode next;
+public class ListNode {
+      public int val;
+      public ListNode next;
       ListNode() {}
       public ListNode(int val) { this.val = val; }
       ListNode(int val, ListNode next) { this.val = val; this.next = next; }

@@ -65,17 +65,17 @@ public class WordBreak {
 
     public boolean wordBreak22(String s, List<String> wordDict) {
         Set<String> wordDictSet = new HashSet<>(wordDict);
-        boolean[] dp = new boolean[s.length() + 1];
-        dp[0] = true;
+        boolean[] visited = new boolean[s.length() + 1];
+        visited[0] = true;
         for (int i = 1; i <= s.length(); i++) {
             for (int j = 0; j < i; j++) {
-                if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
-                    dp[i] = true;
+                if (visited[j] && wordDictSet.contains(s.substring(j, i))) {
+                    visited[i] = true;
                     break;
                 }
             }
         }
-        return dp[s.length()];
+        return visited[s.length()];
     }
 
      public boolean wordBreak(String s, List<String> wordDict) {

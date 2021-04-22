@@ -34,7 +34,65 @@ Each node in the tree has unique values 0 <= node.val <= 500.
 The target node is a node in the tree.
 0 <= K <= 1000.
 */
-public class AllNodesDistanceKinBinaryTree {
+public class  AllNodesDistanceKinBinaryTree {
+
+    Map<TreeNode, TreeNode> childParentMap = new HashMap<>();
+    List<Integer> ans = new ArrayList<>();
+    HashSet<TreeNode> visted = new HashSet<>();
+    public List<Integer> distanceK0(TreeNode root, TreeNode target, int K) {
+
+        // dfs till target and build child - parent relationship
+        dfs(root, target, null);
+
+        // straight away get descends from target
+        drill(target, K);
+        int temp = K;
+
+        // iterate through each parent and reduce a level .
+        // get descends that are at reduced level .
+        while (temp >= 0) {
+
+            TreeNode node = childParentMap.get(target);
+            if (node == null) {
+                break;
+            }
+            drill(node, temp - 1);
+            temp = temp - 1;
+            target = node;
+        }
+        return ans;
+    }
+
+
+
+    public void dfs(TreeNode node, TreeNode target, TreeNode parent) {
+
+        if (node == null) {
+            return;
+        }
+        childParentMap.put(node, parent);
+        if (node == target) {
+            return;
+        }
+
+        dfs(node.left, target, node);
+        dfs(node.right, target, node);
+
+    }
+
+    public void drill(TreeNode node, int K) {
+
+        if (node != null && !visted.contains(node)) {
+            if (K == 0) {
+                ans.add(node.val);
+                return;
+            }
+            visted.add(node);
+            drill(node.left, K - 1);
+            drill(node.right, K - 1);
+        }
+    }
+
     //Method 1: use HashMap
     //1. build a undirected graph using treenodes as vertices, and the parent-child relation as edges
     //2. do BFS with source vertice (target) to find all vertices with distance K to it.
@@ -59,8 +117,8 @@ public class AllNodesDistanceKinBinaryTree {
             int size = q.size();
             if (K == 0) {
                 for (int i = 0; i < size ; i++) res.add(q.poll().val);
-                    return res;
-                }
+                return res;
+            }
             for (int i = 0; i < size; i++) {
                 TreeNode node = q.poll();
                 for (TreeNode next : map.get(node)) {
@@ -144,6 +202,10 @@ public class AllNodesDistanceKinBinaryTree {
             gNode.right = cloneGraph(node.right, gNode, target);
             return gNode;
         }
+    //Method 1: use HashMap
+    //1. build a undirected graph using treenodes as vertices, and the parent-child relation as edges
+    //2. do DFS with source vertice (target) to find all vertices with distance K to it.
+    //here can also use Map<TreeNode, TreeNode> to only store the child - parent mapping, since parent-child mapping is inherent in the tree structure
 
     Map<TreeNode, Integer> map2 = new HashMap<>();
 

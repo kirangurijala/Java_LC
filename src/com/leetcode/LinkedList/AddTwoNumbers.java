@@ -31,8 +31,8 @@ Output: [8,9,9,9,0,0,0,1]
     */
 public  class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-    ListNode res=new ListNode(0);
-    ListNode curr=res;
+    ListNode l=new ListNode(0);
+    ListNode curr=l;
     int sum=0;
     while(l1!=null || l2!=null){
       if(l1!=null){
@@ -53,7 +53,7 @@ public  class AddTwoNumbers {
       curr.next=new ListNode(sum%10);
     }
 
-    return res.next;
+    return l.next;
   }
 
 

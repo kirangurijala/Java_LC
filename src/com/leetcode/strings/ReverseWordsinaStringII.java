@@ -1,5 +1,8 @@
-package com.leetcode.strings;/*
-Given an input string , reverse the string word by word. 
+package com.leetcode.strings;
+/*
+https://leetcode.com/problems/reverse-words-in-a-string-ii/
+
+Given an input string , reverse the string word by word.
 
 Example:
 
@@ -18,7 +21,7 @@ Follow up: Could you do it in-place without allocating extra space?
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-class ReverseWords2 {
+class ReverseWordsinaStringII {
     public static void reverseWords(char[] s) {
         // Three step to reverse
         // 1, reverse the whole sentence

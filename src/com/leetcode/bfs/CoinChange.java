@@ -64,6 +64,7 @@ public class CoinChange {
         Queue<Integer> q=new LinkedList<>();
         q.add(amount);
         //visited[amount]=true;
+
         int level=1;
         while (!q.isEmpty()){
             int size=q.size();

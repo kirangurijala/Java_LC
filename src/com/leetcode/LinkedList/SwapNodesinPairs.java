@@ -32,9 +32,8 @@ Follow up: Can you solve the problem without modifying the values in the list's 
     */
 public  class SwapNodesinPairs {
   public static ListNode swapPairs(ListNode head) {
-    ListNode dummy=new ListNode(-1);
-    dummy.next=head;
-    ListNode rev=dummy;
+    ListNode res=new ListNode(-1);
+    res.next=head;
     ListNode curr=head;
 
     while(curr!=null && curr.next!=null){
@@ -48,7 +47,7 @@ public  class SwapNodesinPairs {
       curr=temp.next;
     }
 
-    return dummy.next;
+    return res.next;
   }
 
 

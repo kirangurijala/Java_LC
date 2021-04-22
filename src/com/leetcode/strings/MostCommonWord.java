@@ -1,5 +1,6 @@
 package com.leetcode.strings;
 /*
+https://leetcode.com/problems/most-common-word/
 819. Most Common Word
 Given a paragraph and a list of banned words, return the most frequent word that is not in the list of banned words.  It is guaranteed there is at least one word that isn't banned, and that the answer is unique.
 
@@ -39,7 +40,7 @@ class MostCommonWord {
         int max = 0;
         String result = "";
         for (String word : words) {
-            if (!bann.contains(words)) {
+            if (!bann.contains(word)) {
                 int cnt = count.getOrDefault(word, 0) + 1;
                 count.put(word, cnt);
                 if (cnt > max) {

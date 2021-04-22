@@ -67,13 +67,37 @@ public class CountGoodNodesinBinaryTree {
         treee.goodNodes(root);
         System.out.println(treee.goodNodes(root));
     }
-
+    int count = 0;
     public int goodNodes(TreeNode root) {
-        return preorder(root,Integer.MIN_VALUE);
+        // test input
+        if (root==null) return count;
+        // start dfs
+        preOrder(root, root.val);
+        return count;
+    }
+
+    private void preOrder(TreeNode root, int val) {
+        if (root == null) return;
+
+        if (root.val >= val) count++;
+
+        //  In exampe 1, from path 3->1->3 we send
+        //     maximum value for comparision.
+        //     Why? Because if we send 1 (i.e. don't
+        //     send max value), we'll count 1 as the
+        //     start of the path and increment count.
+        //     This is not correct because we are not
+        //     considering the already present maximum
+        //     value (i.e. 3)
+        preOrder(root.left, Math.max(val, root.val));
+        preOrder(root.right, Math.max(val, root.val));
+    }
+    public int goodNodes22(TreeNode root) {
+        return preorder22(root,Integer.MIN_VALUE);
     }
 
     int res=0,max=0;
-    public int preorder(TreeNode root,int max){
+    public int preorder22(TreeNode root,int max){
         if(root==null){
             return 0;
         }
@@ -85,8 +109,8 @@ public class CountGoodNodesinBinaryTree {
             res=0;
         }
 
-        res+=preorder(root.left, max);
-        res+=preorder(root.right, max);
+        res+=preorder22(root.left, max);
+        res+=preorder22(root.right, max);
         return res;
     }
 

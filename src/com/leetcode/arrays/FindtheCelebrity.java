@@ -36,6 +36,14 @@ graph[i][i] == 1
 Follow up: If the maximum number of allowed calls to the API knows is 3 * n, could you find a solution without exceeding the maximum number of calls?
  */
 public class FindtheCelebrity {
+
+    //Logical Thinking
+// It is inductive that we can find the candidate and check whether it is up to standard or not.
+// How do we decide the candidate?
+// We are sure that if A knows B, A cannot be the celebrity while B may be, i.e., B is the candidate. Since there is only one celebrity, one loop is enough to decide the candidate.
+// How do we check whether the candidate is up to standard?
+// According to the definition of a celebrity, if !knows(i, candidate) || knows(candidate, i) exists, the candidate is not qualified.
+
     public int findCelebrity(int n) {
         int candidate = 0;
         for (int i = 1; i < n; i++) {

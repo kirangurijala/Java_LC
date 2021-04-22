@@ -46,24 +46,21 @@ public class WordPattern {
 
     public boolean wordPattern(String pattern, String s) {
         Map<Character,String> map=new HashMap<>();
-        char[] chars=pattern.toCharArray();
         String[] words=s.split(" ");
         if (words.length != pattern.length())
             return false;
-
         for(int i=0;i<words.length;i++){
             char ch=pattern.charAt(i);
             String word=words[i];
             if(map.containsKey(ch)){
                 if(!map.get(ch).equals(word))
                     return false;
-            }
-
-            if(map.containsValue(word)){
-                if(map.get(ch)==null)
+            }else{
+                if(map.containsValue(word)){
                     return false;
+                }
+                map.put(ch,word);
             }
-            map.put(ch,word);
         }
 
         return true;

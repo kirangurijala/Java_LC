@@ -48,11 +48,11 @@ If all integer numbers from the stream are in the range [0, 100], how would you 
 If 99% of all integer numbers from the stream are in the range [0, 100], how would you optimize your solution?
  */
 class MedianFinder {
-    //Time complexity: O(5 \cdot \log n) + O(1) \approx O(\log n)O(5⋅logn)+O(1)≈O(logn).
+    //Time complexity: O(log n) + O(1) ≈O(logn).
     //
     //At worst, there are three heap insertions and two heap deletions from the top. Each of these takes about O(\log n)O(logn) time.
     //Finding the median takes constant O(1)O(1) time since the tops of heaps are directly accessible.
-    //Space complexity: O(n)O(n) linear space to hold input in containers.
+    //Space complexity: O(n)linear space to hold input in containers.
     private PriorityQueue<Integer> maxHeap;
     private PriorityQueue<Integer> minHeap;
 

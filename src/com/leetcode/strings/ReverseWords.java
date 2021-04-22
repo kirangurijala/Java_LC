@@ -53,7 +53,14 @@ class ReverseWords {
         }
 
         words.offerFirst(word.toString());
-        return String.join(" ", words);
+        StringBuilder res=new StringBuilder();
+        for(String wordc:words){
+            res.append(wordc).append(" ");
+        }
+
+        res.deleteCharAt(res.length()-1);
+        return res.toString();
+//        return String.join(" ", words);
     }
 
     public static void main(String[] args) {

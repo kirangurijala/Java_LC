@@ -29,18 +29,11 @@ public class TopKFrequentWords {
 
   //  PriorityQueue<String> q=new PriorityQueue<>((a,b)->(counts.get(a)).equals(counts.get(b))?a.compareTo(b):counts.get(b)-counts.get(a));
     PriorityQueue<String> q=new PriorityQueue<>();
-    List<String> listq=new ArrayList<>();
-
     for(String word:words){
       System.out.print(q);
       q.add(word);
       System.out.print(q);
       System.out.println();
-      listq.add(word);
-      Collections.sort(listq);
-      System.out.println(listq);
-
-
     }
     q.clear();
 //    for(String word: counts.keySet()){

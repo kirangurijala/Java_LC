@@ -1,6 +1,8 @@
 package com.leetcode.collection;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
 /*
@@ -39,7 +41,81 @@ lRUCache.get(3);    // return 3
 lRUCache.get(4);    // return 4
 
  */
-public class LRUCache extends LinkedHashMap<Integer,Integer> {
+public class LRUCache{
+  class DLinkNode {
+    int key;
+    int value;
+    DLinkNode prev;
+    DLinkNode next;
+  }
+  void addNode(DLinkNode node){
+    node.prev=head;
+    node.next=head.next;
+    head.next.prev=node;
+    head.next=node;
+  }
+
+  void removeNode(DLinkNode node){
+    DLinkNode pre=node.prev;
+    DLinkNode next=node.next;
+
+    pre.next=next;
+    next.prev=pre;
+  }
+
+  void moveToHead(DLinkNode node){
+    removeNode(node);
+    addNode(node);
+  }
+
+  DLinkNode popTail(){
+    DLinkNode res=tail.prev;
+    removeNode(res);
+    return  res;
+  }
+
+  Map<Integer,DLinkNode> cache=new HashMap<>();
+  DLinkNode head;
+  DLinkNode tail;
+  int capacity;
+  LRUCache(int capacity){
+    head=new DLinkNode();
+    tail=new DLinkNode();
+    head.next=tail;
+    tail.prev=head;
+    this.capacity=capacity;
+  }
+
+  int get(int key){
+    DLinkNode node= cache.get(key);
+    if(node==null){
+      return -1;
+    }
+
+    moveToHead(node);
+    return node.value;
+  }
+
+  void put(int key,int value){
+    DLinkNode node=cache.get(key);
+    if(node!=null){
+      node.value = value;
+      moveToHead(node);
+      return;
+    }
+
+    DLinkNode newNode=new DLinkNode();
+    newNode.key=key;
+    newNode.value=value;
+    cache.put(key,newNode);
+    addNode(newNode);
+    if(cache.size()>capacity){
+      DLinkNode tail = popTail();
+      cache.remove(tail.key);
+    }
+  }
+}
+class LRUCache2 extends LinkedHashMap<Integer,Integer> {
   /*
    * Extend LRU class to LinkedHash <int,int>
    * LRUCache constructor, cal super metho by passing capacity,loadfact(0.75f),assessorder true(LRU)
@@ -51,7 +127,7 @@ public class LRUCache extends LinkedHashMap<Integer,Integer> {
    * Space complexity : O(capacity) since the space is used only for a hashmap and double linked list with at most capacity + 1 elements
    */
   int capacity=0;
-  public LRUCache(int capacity){
+  public LRUCache2(int capacity){
     super(capacity,0.75f,true);
     this.capacity=capacity;
   }

@@ -47,7 +47,6 @@ public class KthLargestElementinaStream {
         for(int n:nums){
             add(n);
         }
-
     }
 
     public int add(int val) {
@@ -58,6 +57,7 @@ public class KthLargestElementinaStream {
 
         return q.peek();
     }
+
     public static void main(String[] args) {
         int arr[] = {3,2,1,5,6,4};
       KthLargestElementinaStream solution= new KthLargestElementinaStream(3,arr);

@@ -61,8 +61,32 @@ public class BackspaceStringCompare {
 
         return String.valueOf(stack);
     }
+
+
+
+
+//      return removeBackspace(S).equals(removeBackspace(T));
+
+//  private String removeBackspace(String str){
+//       String res="";
+//       int count=0;
+//       for(int i=str.length()-1;i>=0;i--){
+//         if(str.charAt(i)=='#'){
+//           count++;
+//         }else{
+//           if(count>0){
+//             count--;
+//           }else{
+//             res=res+str.charAt(i);
+//           }
+//         }
+//       }
+//       return res;
+//     }
+
+
     public static void main(String[] args) {
         BackspaceStringCompare solution = new BackspaceStringCompare();
-        //System.out.println(solution.removeDuplicates("abbaca"));
+       // System.out.println(solution.removeDuplicates("abbaca"));
     }
 }

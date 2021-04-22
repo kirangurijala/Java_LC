@@ -85,7 +85,6 @@ public class SnakesandLadders {
                     if (!visits[next]) {
                         q.add(next);
                     }
-
                 }
             }
             move++;

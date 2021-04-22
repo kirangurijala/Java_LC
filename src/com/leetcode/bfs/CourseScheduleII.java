@@ -1,8 +1,6 @@
 package com.leetcode.bfs;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /*
 https://leetcode.com/problems/course-schedule-ii/
@@ -91,6 +89,47 @@ public class CourseScheduleII {
 
         return order;
     }
+       public int[] findOrderMap(int numCourses, int[][] prerequisites) {
+            int[] inorder=new int[numCourses];
+            int[] order=new int[numCourses];
+            Map<Integer, Set<Integer>> map = new HashMap<>();
+            for (int[] prerequisite:prerequisites) {
+                inorder[prerequisite[0]]++;
+                map.putIfAbsent(prerequisite[1], new HashSet<>());
+                map.get(prerequisite[1]).add(prerequisite[0]);
+            }
+
+            int index=0;
+            Queue<Integer> q=new LinkedList<>();
+            for (int i=0;i< inorder.length;i++) {
+                if(inorder[i]==0){
+                    q.add(i);
+                    order[index++]=i;
+                }
+            }
+
+            if(index==numCourses){
+                return order;
+            }
+            while (!q.isEmpty()){
+                int finishedCoursed=q.poll();
+                if(!map.containsKey(finishedCoursed) || map.get(finishedCoursed).isEmpty()){
+                    continue;
+                }
+
+                for(int prerequisite : map.get(finishedCoursed)){
+                    inorder[prerequisite]--;
+                    if(inorder[prerequisite] == 0){
+                        q.add(prerequisite);
+                        order[index++] = prerequisite;
+                    }
+                }
+            }
+            if(index==numCourses){
+                return order;
+            }
+            return new int[0];
+        }
 
     public static void main(String[] args) {
         CourseScheduleII solution = new CourseScheduleII();
