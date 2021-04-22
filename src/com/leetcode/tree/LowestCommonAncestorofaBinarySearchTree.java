@@ -38,6 +38,19 @@ Constraints:
     p and q will exist in the BST.
     */
 public class LowestCommonAncestorofaBinarySearchTree {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        int rval = root.val;
+        int pval = p.val;
+        int qval = q.val;
+
+        if (pval < rval && qval < rval) {
+            return lowestCommonAncestor(root.left, p, q);
+        } else if (pval > rval && qval > rval) {
+            return lowestCommonAncestor(root.right, p, q);
+        }
+            return root;
+    }
+
     public static void main(String[] args) {
         BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
         TreeNode root = new TreeNode(5);
@@ -62,18 +75,5 @@ public class LowestCommonAncestorofaBinarySearchTree {
         LowestCommonAncestorofaBinarySearchTree invertBinaryTree = new LowestCommonAncestorofaBinarySearchTree();
 
         System.out.println(invertBinaryTree.lowestCommonAncestor(root, new TreeNode(5), new TreeNode(8)));
-    }
-
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        int rval = root.val;
-        int pval = p.val;
-        int qval = q.val;
-
-        if (pval < rval && qval < rval) {
-            return lowestCommonAncestor(root.left, p, q);
-        } else if (pval > rval && qval > rval) {
-            return lowestCommonAncestor(root.right, p, q);
-        }
-            return root;
     }
 }

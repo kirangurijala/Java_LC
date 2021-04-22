@@ -34,33 +34,7 @@ The number of nodes in both trees is in the range [0, 100].
 -104 <= Node.val <= 104
 */
 public class SameTree {
-    public static void main(String[] args) {
-        BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
-        TreeNode root = new TreeNode(5);
-        System.out.println("Binary Tree Example");
-/*
-     5
-   /   \
-  3     7
- / \   / \
-2   4 6   8
- */
-        System.out.println("Building tree with root val " + root.val);
-        binaryTreeImplementation.insert(root, 2);
-        binaryTreeImplementation.insert(root, 4);
-        binaryTreeImplementation.insert(root, 8);
-        binaryTreeImplementation.insert(root, 6);
-        binaryTreeImplementation.insert(root, 7);
-        binaryTreeImplementation.insert(root, 3);
-        binaryTreeImplementation.insert(root, 9);
-        System.out.println("Traversing tree in order");
-        binaryTreeImplementation.traverseInOrder(root);
-        SameTree treee = new SameTree();
-        treee.isSameTree(root,root);
-        System.out.println(treee.isSameTree(root,root));
-    }
-
-    public boolean isSameTree(TreeNode p, TreeNode q) {
+     public boolean isSameTree(TreeNode p, TreeNode q) {
         if(p==null || q==null )
             return p==q;
 
@@ -68,8 +42,6 @@ public class SameTree {
 
         return isSameTree(p.left,q.left)&&isSameTree(p.right,q.right);
     }
-
-
 
     public boolean isSymmetricR(TreeNode root) {
         Queue<TreeNode> nodes=new LinkedList<>();
@@ -98,5 +70,30 @@ public class SameTree {
 
         return true;
         //return isSymmetric(root.left, root.right);
+    }
+    public static void main(String[] args) {
+        BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
+        TreeNode root = new TreeNode(5);
+        System.out.println("Binary Tree Example");
+/*
+     5
+   /   \
+  3     7
+ / \   / \
+2   4 6   8
+ */
+        System.out.println("Building tree with root val " + root.val);
+        binaryTreeImplementation.insert(root, 2);
+        binaryTreeImplementation.insert(root, 4);
+        binaryTreeImplementation.insert(root, 8);
+        binaryTreeImplementation.insert(root, 6);
+        binaryTreeImplementation.insert(root, 7);
+        binaryTreeImplementation.insert(root, 3);
+        binaryTreeImplementation.insert(root, 9);
+        System.out.println("Traversing tree in order");
+        binaryTreeImplementation.traverseInOrder(root);
+        SameTree treee = new SameTree();
+        treee.isSameTree(root,root);
+        System.out.println(treee.isSameTree(root,root));
     }
 }

@@ -30,6 +30,14 @@ public class PathSum {
         if(root == null){
             return false;
         }
+        if(root.left == null && root.right==null) return sum==root.val;
+        return hasPathSum(root.left,sum- root.val) || hasPathSum(root.right,sum- root.val);
+    }
+
+    public boolean hasPathSumBFS(TreeNode root, int sum) {
+        if(root == null){
+            return false;
+        }
 
         LinkedList<Integer> sums = new LinkedList<Integer>();
         LinkedList<TreeNode> q=new LinkedList<>();
@@ -56,15 +64,6 @@ public class PathSum {
 
         return false;
     }
-
-        public boolean hasPathSum22(TreeNode root, int sum) {
-            if(root == null){
-                return false;
-            }
-            if(root.left == null && root.right==null) return sum==root.val;
-            return hasPathSum(root.left,sum- root.val) || hasPathSum(root.right,sum- root.val);
-        }
-
 
     public static void main(String[] args) {
         BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();

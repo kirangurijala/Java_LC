@@ -36,10 +36,34 @@ Constraints:
     All Node.val are unique.
     p != q
     p and q will exist in the tree.
-
-
     */
 public class LowestCommonAncestorBinaryTree {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return root;
+        }
+
+        //if allows duplicate values
+        // if(root==p || root==q){
+        //            return root;
+        //        }
+        if (root.val == p.val || root.val == q.val) {
+            return root;
+        }
+
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left != null && right != null) {
+            return root;
+        }
+
+        if (left != null) {
+            return left;
+        }
+
+        return right;
+    }
+
     public static void main(String[] args) {
         BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
         TreeNode root = new TreeNode(5);
@@ -63,36 +87,5 @@ public class LowestCommonAncestorBinaryTree {
         binaryTreeImplementation.traverseInOrder(root);
         LowestCommonAncestorBinaryTree invertBinaryTree = new LowestCommonAncestorBinaryTree();
         System.out.println("LCA:" + invertBinaryTree.lowestCommonAncestor(root, new TreeNode(8), new TreeNode(9)));
-    }
-
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) {
-            return root;
-        }
-        //if allows duplicate values
-// if(root==p || root==q){
-//            return root;
-//        }
-        if (root.val == p.val || root.val == q.val) {
-            return root;
-        }
-
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
-        if (left != null && right != null) {
-            return root;
-        }
-
-        if (left == null) {
-            return right;
-        }
-
-        return left;
-
-//        if (left != null) {
-//            return left;
-//        }
-//
-//        return right;
     }
 }

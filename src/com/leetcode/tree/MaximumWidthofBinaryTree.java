@@ -70,31 +70,6 @@ Constraints:
 The given binary tree will have between 1 and 3000 nodes.
     */
 public class MaximumWidthofBinaryTree {
-    public static void main(String[] args) {
-        BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
-        TreeNode root = new TreeNode(5);
-        System.out.println("Binary Tree Example");
-/*
-     5
-   /   \
-  3     7
- / \   / \
-2   4 6   8
- */
-        System.out.println("Building tree with root val " + root.val);
-        binaryTreeImplementation.insert(root, 2);
-        binaryTreeImplementation.insert(root, 4);
-        binaryTreeImplementation.insert(root, 8);
-        binaryTreeImplementation.insert(root, 6);
-        binaryTreeImplementation.insert(root, 7);
-        binaryTreeImplementation.insert(root, 3);
-        binaryTreeImplementation.insert(root, 9);
-        System.out.println("Traversing tree in order");
-        binaryTreeImplementation.traverseInOrder(root);
-        MaximumWidthofBinaryTree treee = new MaximumWidthofBinaryTree();
-        System.out.println(treee.widthOfBinaryTree(root));
-    }
-
     public int widthOfBinaryTree(TreeNode root) {
         int max=0,start=0,end=0;
         Queue<TreeNode> nodes=new LinkedList<>();
@@ -123,5 +98,30 @@ public class MaximumWidthofBinaryTree {
         }
 
         return max;
+    }
+
+    public static void main(String[] args) {
+        BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
+        TreeNode root = new TreeNode(5);
+        System.out.println("Binary Tree Example");
+/*
+     5
+   /   \
+  3     7
+ / \   / \
+2   4 6   8
+ */
+        System.out.println("Building tree with root val " + root.val);
+        binaryTreeImplementation.insert(root, 2);
+        binaryTreeImplementation.insert(root, 4);
+        binaryTreeImplementation.insert(root, 8);
+        binaryTreeImplementation.insert(root, 6);
+        binaryTreeImplementation.insert(root, 7);
+        binaryTreeImplementation.insert(root, 3);
+        binaryTreeImplementation.insert(root, 9);
+        System.out.println("Traversing tree in order");
+        binaryTreeImplementation.traverseInOrder(root);
+        MaximumWidthofBinaryTree treee = new MaximumWidthofBinaryTree();
+        System.out.println(treee.widthOfBinaryTree(root));
     }
 }

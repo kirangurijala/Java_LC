@@ -39,7 +39,47 @@ Constraints:
     root.val == min(root.left.val, root.right.val) for each internal node of the tree.
  */
 public class SecondMinimumNodeBinaryTree {
+    Set<Integer> set=new HashSet<Integer>();
+    public void inorderTraversal(TreeNode root) {
+        if (root == null) { return;}
+        inorderTraversal(root.left);
+        set.add(root.val);
+        inorderTraversal(root.right);
+    }
+
+    public int findSecondMinimumValue(TreeNode root) {
+        inorderTraversal(root);
+        Integer[] res=set.toArray(new Integer[set.size()]);
+        Arrays.sort(res);
+        return set.size()>1? res[1] :-1;
+    }
+
     Set<Integer> res = new HashSet<Integer>();
+    public int findSecondMinimumValue22(TreeNode root) {
+        preorderTraversal(root);
+        preorderTraversal(root);
+        long min=Long.MAX_VALUE;//nodes cannot be -ve
+        for(int n:res){
+            if(root.val<n && n<min){
+                min=n;
+            }
+        }
+
+        if(min==Long.MAX_VALUE){
+            return -1;
+        }
+
+        return (int)min;
+    }
+
+    public void preorderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        res.add(root.val);
+        preorderTraversal(root.left);
+        preorderTraversal(root.right);
+    }
 
     public static void main(String[] args) {
         BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
@@ -72,45 +112,5 @@ public class SecondMinimumNodeBinaryTree {
 
         System.out.println(invertBinaryTree.findSecondMinimumValue(root));
         binaryTreeImplementation.traverseInOrder(root);
-    }
-    Set<Integer> set=new HashSet<Integer>();
-    public void inorderTraversal(TreeNode root) {
-        if (root == null) { return;}
-        inorderTraversal(root.left);
-        set.add(root.val);
-        inorderTraversal(root.right);
-    }
-
-    public int findSecondMinimumValue(TreeNode root) {
-        inorderTraversal(root);
-        Integer[] res=set.toArray(new Integer[set.size()]);
-        Arrays.sort(res);
-        return set.size()>1? res[1] :-1;
-    }
-
-    public int findSecondMinimumValue22(TreeNode root) {
-        preorderTraversal(root);
-        preorderTraversal(root);
-        long min=Long.MAX_VALUE;//nodes cannot be -ve
-        for(int n:res){
-            if(root.val<n && n<min){
-                min=n;
-            }
-        }
-
-        if(min==Long.MAX_VALUE){
-            return -1;
-        }
-
-        return (int)min;
-    }
-
-    public void preorderTraversal(TreeNode root) {
-        if (root == null) {
-            return;
-        }
-        res.add(root.val);
-        preorderTraversal(root.left);
-        preorderTraversal(root.right);
     }
 }

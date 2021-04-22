@@ -25,6 +25,27 @@ Explanation: All root-to-leaf paths are: 1->2->5, 1->3
 
     */
 public class BinaryTreePaths {
+    List<String>  paths=new ArrayList<>();
+    public List<String> binaryTreePaths(TreeNode root) {
+        binaryTreePaths(root,"");
+        return paths;
+    }
+
+    public void binaryTreePaths(TreeNode root,String path) {
+        if(root == null){
+            return;
+        }
+
+        path += Integer.toString(root.val);
+        if(root.left==null && root.right==null){
+            paths.add(path);
+        }else{
+            path=path+"->";
+            binaryTreePaths(root.left,path);
+            binaryTreePaths(root.right,path);
+        }
+    }
+
     public static void main(String[] args) {
         BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
         TreeNode root = new TreeNode(5);
@@ -48,26 +69,5 @@ public class BinaryTreePaths {
         binaryTreeImplementation.traverseInOrder(root);
         BinaryTreePaths treee = new BinaryTreePaths();
         System.out.println(treee.binaryTreePaths(root));
-    }
-
-    List<String>  paths=new ArrayList<>();
-    public List<String> binaryTreePaths(TreeNode root) {
-        binaryTreePaths(root,"");
-        return paths;
-    }
-
-    public void binaryTreePaths(TreeNode root,String path) {
-        if(root == null){
-            return;
-        }
-
-        path += Integer.toString(root.val);
-        if(root.left==null && root.right==null){
-            paths.add(path);
-        }else{
-            path=path+"->";
-            binaryTreePaths(root.left,path);
-            binaryTreePaths(root.right,path);
-        }
     }
 }

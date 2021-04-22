@@ -42,31 +42,6 @@ The number of nodes in the binary tree is in the range [1, 10^5].
 Each node's value is between [-10^4, 10^4].
     */
 public class CountGoodNodesinBinaryTree {
-    public static void main(String[] args) {
-        BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
-        TreeNode root = new TreeNode(5);
-        System.out.println("Binary Tree Example");
-/*
-     5
-   /   \
-  3     7
- / \   / \
-2   4 6   8
- */
-        System.out.println("Building tree with root val " + root.val);
-        binaryTreeImplementation.insert(root, 2);
-        binaryTreeImplementation.insert(root, 4);
-        binaryTreeImplementation.insert(root, 8);
-        binaryTreeImplementation.insert(root, 6);
-        binaryTreeImplementation.insert(root, 7);
-        binaryTreeImplementation.insert(root, 3);
-        binaryTreeImplementation.insert(root, 9);
-        System.out.println("Traversing tree in order");
-        binaryTreeImplementation.traverseInOrder(root);
-        CountGoodNodesinBinaryTree treee = new CountGoodNodesinBinaryTree();
-        treee.goodNodes(root);
-        System.out.println(treee.goodNodes(root));
-    }
     int count = 0;
     public int goodNodes(TreeNode root) {
         // test input
@@ -121,4 +96,29 @@ public class CountGoodNodesinBinaryTree {
 //         res += goodNodes(root.right, Math.max(ma, root.val));
 //         return res;
 //     }
+    public static void main(String[] args) {
+        BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
+        TreeNode root = new TreeNode(5);
+        System.out.println("Binary Tree Example");
+/*
+     5
+   /   \
+  3     7
+ / \   / \
+2   4 6   8
+ */
+        System.out.println("Building tree with root val " + root.val);
+        binaryTreeImplementation.insert(root, 2);
+        binaryTreeImplementation.insert(root, 4);
+        binaryTreeImplementation.insert(root, 8);
+        binaryTreeImplementation.insert(root, 6);
+        binaryTreeImplementation.insert(root, 7);
+        binaryTreeImplementation.insert(root, 3);
+        binaryTreeImplementation.insert(root, 9);
+        System.out.println("Traversing tree in order");
+        binaryTreeImplementation.traverseInOrder(root);
+        CountGoodNodesinBinaryTree treee = new CountGoodNodesinBinaryTree();
+        treee.goodNodes(root);
+        System.out.println(treee.goodNodes(root));
+    }
 }

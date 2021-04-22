@@ -56,7 +56,6 @@ public class BinaryTreeZigzagLevelOrderTraversal {
         boolean zigzag=false;
         while(!q.isEmpty()){
             List<Integer> levelNodes=new ArrayList<>();
-            // while(!q.isEmpty()){
             int cnt = q.size();
             for (int i = 0; i < cnt; i++) {
                 TreeNode node=q.poll();

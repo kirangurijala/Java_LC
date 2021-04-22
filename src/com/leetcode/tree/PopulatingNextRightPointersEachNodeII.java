@@ -41,31 +41,29 @@ The number of nodes in the given tree is less than 6000.
 -100 <= node.val <= 100
     */
 public class PopulatingNextRightPointersEachNodeII {
-    public static void main(String[] args) {
-        BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
-        TreeNode root = new TreeNode(5);
-        System.out.println("Binary Tree Example");
-/*
-     5
-   /   \
-  3     7
- / \   / \
-2   4 6   8
- */
-        System.out.println("Building tree with root val " + root.val);
-        binaryTreeImplementation.insert(root, 2);
-        binaryTreeImplementation.insert(root, 4);
-        binaryTreeImplementation.insert(root, 8);
-        binaryTreeImplementation.insert(root, 6);
-        binaryTreeImplementation.insert(root, 7);
-        binaryTreeImplementation.insert(root, 3);
-        binaryTreeImplementation.insert(root, 9);
-        System.out.println("Traversing tree in order");
-        binaryTreeImplementation.traverseInOrder(root);
-        PopulatingNextRightPointersEachNode invertBinaryTree = new PopulatingNextRightPointersEachNode();
+    public Node connect2(Node root) {
+        if(root==null) return root;
+        Queue<Node> q=new LinkedList<>();
+        q.add(root);
+        while(!q.isEmpty()){
+            int size=q.size();
+            for (int i = 0; i < size ; i++) {
+                Node node=q.poll();
+                if(i != size - 1){
+                    node.next=q.peek();
+                }
+                if(node.left!=null){
+                    q.add(node.left);
+                }
+                if(node.right!=null){
+                    q.add(node.right);
+                }
+            }
+        }
 
-       // System.out.println(invertBinaryTree.connect(root));
+        return root;
     }
+
     Node prev, leftmost;
 
     public void processChild(Node childNode) {
@@ -136,29 +134,6 @@ public class PopulatingNextRightPointersEachNodeII {
         return root ;
     }
 
-    public Node connect2(Node root) {
-        if(root==null) return root;
-        Queue<Node> q=new LinkedList<>();
-        q.add(root);
-        while(!q.isEmpty()){
-            int size=q.size();
-            for (int i = 0; i < size ; i++) {
-                Node node=q.poll();
-                if(i != size - 1){
-                    node.next=q.peek();
-                }
-                if(node.left!=null){
-                    q.add(node.left);
-                }
-                if(node.right!=null){
-                    q.add(node.right);
-                }
-            }
-        }
-
-        return root;
-    }
-
 
 //       public Node connect(Node root) {
 //
@@ -199,27 +174,6 @@ public class PopulatingNextRightPointersEachNodeII {
 //            return root;
 //        }
 //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public Node connect22(Node root) {
 
@@ -268,6 +222,32 @@ public class PopulatingNextRightPointersEachNodeII {
 
         // Since the tree has now been modified, return the root node
         return root;
+    }
+
+    public static void main(String[] args) {
+        BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
+        TreeNode root = new TreeNode(5);
+        System.out.println("Binary Tree Example");
+/*
+     5
+   /   \
+  3     7
+ / \   / \
+2   4 6   8
+ */
+        System.out.println("Building tree with root val " + root.val);
+        binaryTreeImplementation.insert(root, 2);
+        binaryTreeImplementation.insert(root, 4);
+        binaryTreeImplementation.insert(root, 8);
+        binaryTreeImplementation.insert(root, 6);
+        binaryTreeImplementation.insert(root, 7);
+        binaryTreeImplementation.insert(root, 3);
+        binaryTreeImplementation.insert(root, 9);
+        System.out.println("Traversing tree in order");
+        binaryTreeImplementation.traverseInOrder(root);
+        PopulatingNextRightPointersEachNode invertBinaryTree = new PopulatingNextRightPointersEachNode();
+
+        // System.out.println(invertBinaryTree.connect(root));
     }
 }
 

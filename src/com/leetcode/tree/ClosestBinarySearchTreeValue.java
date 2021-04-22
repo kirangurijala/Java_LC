@@ -24,7 +24,40 @@ The number of nodes in the tree is in the range [1, 104].
 -109 <= target <= 109
     */
 public class ClosestBinarySearchTreeValue {
+    double min=Double.MAX_VALUE;
+    int res=0;
+    public int closestValue(TreeNode root, double target) {
+        double min=Double.MAX_VALUE;
+        int res=0;
+        while(root!=null){
+            if(min>Math.abs(root.val-target)){
+                min=Math.abs(root.val-target);
+                res= root.val;
+            }
 
+            if(target< root.val){
+                root =root.left;
+            }else{
+                root = root.right;
+            }
+        }
+
+        return res;
+    }
+
+    public int closestValue22(TreeNode root, double target) {
+        if(root==null){
+            return res;
+        }
+
+        if(min>Math.abs(root.val-target)){
+            min=Math.abs(root.val-target);
+            res= root.val;
+        }
+        closestValue(root.left,target);
+        closestValue(root.right,target);
+        return res;
+    }
 
     public static void main(String[] args) {
         BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
@@ -49,46 +82,5 @@ public class ClosestBinarySearchTreeValue {
         binaryTreeImplementation.traverseInOrder(root);
         ClosestBinarySearchTreeValue treee = new ClosestBinarySearchTreeValue();
         System.out.println(treee.closestValue(root,3.7667));
-    }
-
-    double min=Double.MAX_VALUE;
-    int res=0;
-    public int closestValue(TreeNode root, double target) {
-        //int val=0, closest=root.val;
-        double min=Double.MAX_VALUE;
-        int res=0;
-        while(root!=null){
-            // val=root.val;
-            // if(Math.abs(val-target)<Math.abs(closest-target)){
-            //   closest = val;
-            // }
-            if(min>Math.abs(root.val-target)){
-                min=Math.abs(root.val-target);
-                res= root.val;
-            }
-
-            if(target< root.val){
-                root =root.left;
-            }else{
-                root = root.right;
-            }
-        }
-
-//     return closest;
-        return res;
-    }
-
-    public int closestValue22(TreeNode root, double target) {
-        if(root==null){
-            return res;
-        }
-
-        if(min>Math.abs(root.val-target)){
-            min=Math.abs(root.val-target);
-            res= root.val;
-        }
-        closestValue(root.left,target);
-        closestValue(root.right,target);
-        return res;
     }
 }

@@ -66,14 +66,6 @@ public class ConvertSortedListtoBinarySearchTree {
         return root;
     }
 
-
-    public static void main(String[] args) {
-
-        ConvertSortedListtoBinarySearchTree invertBinaryTree = new ConvertSortedListtoBinarySearchTree();
-//TreeNode res=invertBinaryTree.sortedListToBST(new int[]{1,2,3,4,5,6,7});
-     //   System.out.println(res.val);
-    }
-
     public TreeNode sortedListToBST33(ListNode head){
         if(head == null){
             return null;
@@ -105,20 +97,15 @@ public class ConvertSortedListtoBinarySearchTree {
             slow=slow.next;
             fast=fast.next.next;
         }
+
         if (prev != null)
             prev.next = null;
-
-//        // System.out.println("!!!!!!!!!!!!!!!");
-//        //if (prev.next != null)
-//            // if (prev != null)
-//     //  System.out.println(prev.val+":");
-//    //   System.out.println("********************");
-//       //       if (slow != null)
-//      // System.out.println(slow.val+":");
-
-//       if (slow.next != null)
-//     //  System.out.println(slow.val+":"+slow.next.val);
         return slow;
+    }
 
+    public static void main(String[] args) {
+        ConvertSortedListtoBinarySearchTree invertBinaryTree = new ConvertSortedListtoBinarySearchTree();
+        //TreeNode res=invertBinaryTree.sortedListToBST(new int[]{1,2,3,4,5,6,7});
+        //   System.out.println(res.val);
     }
 }

@@ -18,7 +18,35 @@ Return 3, which is the length of the path [4,2,1,3] or [5,2,1,3].
 Note: The length of path between two nodes is represented by the number of edges between them.
     */
 public class SearchBinarySearchTreeValue {
+    public TreeNode searchBST(TreeNode root, int val) {
+        if(root==null){
+            return root;
+        }
 
+        if(root.val==val){
+            return root;
+        }
+        if(root.val>val){
+            return searchBST(root.left,val);
+        }
+        return searchBST(root.right,val);
+    }
+
+    public TreeNode searchBSTWhile(TreeNode root, int val) {
+        while(root!=null){
+            if(root.val==val){
+                return root;
+            }
+
+            if(root.val>val){
+                root=root.left;
+            }else{
+                root=root.right;
+            }
+        }
+
+        return null;
+    }
 
     public static void main(String[] args) {
         BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
@@ -43,34 +71,5 @@ public class SearchBinarySearchTreeValue {
         binaryTreeImplementation.traverseInOrder(root);
         SearchBinarySearchTreeValue treee = new SearchBinarySearchTreeValue();
         System.out.println(treee.searchBST(root,4));
-    }
-
-    public TreeNode searchBST(TreeNode root, int val) {
-        while(root!=null){
-            if(root.val==val){
-                return root;
-            }
-
-            if(root.val>val){
-                root=root.left;
-            }else{
-                root=root.right;
-            }
-        }
-
-        return null;
-    }
-    public TreeNode searchBST22(TreeNode root, int val) {
-        if(root==null){
-            return root;
-        }
-
-        if(root.val==val){
-            return root;
-        }else if(root.val>val){
-            return searchBST(root.left,val);
-        }else{
-            return searchBST(root.right,val);
-        }
     }
 }

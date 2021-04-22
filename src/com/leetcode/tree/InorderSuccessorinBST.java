@@ -1,5 +1,8 @@
 package com.leetcode.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 https://leetcode.com/problems/inorder-successor-in-bst/
 Given the root of a binary search tree and a node p in it, return the in-order successor of that node in the BST. If the given node has no in-order successor in the tree, return null.
@@ -32,6 +35,54 @@ Constraints:
     */
 public class InorderSuccessorinBST {
     int res = 1;
+    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+        if (root == null)
+            return null;
+        if (root.val <= p.val) {
+            return inorderSuccessor(root.right, p);
+        }
+
+        TreeNode left = inorderSuccessor(root.left, p);
+        if(left!=null){
+            return  left;
+        }
+
+        return  root;
+    }
+
+    public TreeNode inorderSuccessoWhile(TreeNode root, TreeNode p) {
+        TreeNode res = null;
+        while(root!=null) {
+            if(root.val > p.val) {
+                res = root;
+                root = root.left;
+            }else{
+                root = root.right;
+            }
+        }
+        return res;
+    }
+
+     List<TreeNode> nodes=new ArrayList<>();
+     public TreeNode inorderSuccessorList(TreeNode root, TreeNode n) {
+         inorderSuccessor(root);
+         int index=nodes.indexOf(n);
+         if(index<0||index+1==nodes.size()){
+             return null;
+         }
+
+         return nodes.get(index+1);
+     }
+
+     public void inorderSuccessor(TreeNode root) {
+         if (root == null) {
+             return;
+         }
+
+         inorderSuccessor(root.left);
+         nodes.add(root);
+         inorderSuccessor(root.right);
+     }
 
     public static void main(String[] args) {
         BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
@@ -57,55 +108,4 @@ public class InorderSuccessorinBST {
         InorderSuccessorinBST treee = new InorderSuccessorinBST();
         System.out.println(treee.inorderSuccessor(root,root));
     }
-
-    //   public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
-//   if (root == null)
-//     return null;
-
-//   if (root.val <= p.val) {
-//     return inorderSuccessor(root.right, p);
-//   }
-//     TreeNode left = inorderSuccessor(root.left, p);
-//     return (left != null) ? left : root;
-
-
-    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
-        TreeNode res = null;
-        while(root!=null) {
-            if(root.val > p.val) {
-                res = root;
-                root = root.left;
-            }else{
-                root = root.right;
-            }
-        }
-        return res;
-    }
-
-
-
-
-
-
-//     List<TreeNode> nodes=new ArrayList<>();
-//     public TreeNode inorderSuccessor(TreeNode root, TreeNode n) {
-//         inorderSuccessor(root);
-//         int index=nodes.indexOf(n);
-//         if(index<0||index+1==nodes.size()){
-//             return null;
-//         }
-
-//         return nodes.get(index+1);
-//     }
-
-//     public List<TreeNode> inorderSuccessor(TreeNode root) {
-//         if (root == null) {
-//             return nodes;
-//         }
-
-//         inorderSuccessor(root.left);
-//         nodes.add(root);
-//         inorderSuccessor(root.right);
-//         return nodes;
-//     }
 }

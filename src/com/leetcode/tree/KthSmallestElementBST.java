@@ -43,6 +43,24 @@ You may assume k is always valid, 1 ≤ k ≤ BST's total elements.
  */
 public class KthSmallestElementBST {
     List<Integer> res = new ArrayList<>();
+    public int kthSmallest(TreeNode root, int k) {
+        if (root == null) {
+            return 0;
+        }
+        inorderTraversal(root);
+        return res.get(k - 1);
+    }
+
+    public void inorderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        inorderTraversal(root.left);
+        res.add(root.val);
+        inorderTraversal(root.right);
+    }
+
 
     public static void main(String[] args) {
         BinaryTreeImplementation binaryTreeImplementation = new BinaryTreeImplementation();
@@ -69,23 +87,5 @@ public class KthSmallestElementBST {
 
         System.out.println(invertBinaryTree.kthSmallest(root, 2));
         binaryTreeImplementation.traverseInOrder(root);
-    }
-
-    public int kthSmallest(TreeNode root, int k) {
-        if (root == null) {
-            return 0;
-        }
-        inorderTraversal(root);
-        return res.get(k - 1);
-    }
-
-    public void inorderTraversal(TreeNode root) {
-        if (root == null) {
-            return;
-        }
-
-        inorderTraversal(root.left);
-        res.add(root.val);
-        inorderTraversal(root.right);
     }
 }

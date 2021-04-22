@@ -22,13 +22,6 @@ One possible answer is: [0,-3,9,-10,null,5], which represents the following heig
  -10  5
 */
 public class ConvertSortedArraytoBinarySearchTree {
-    public static void main(String[] args) {
-
-        ConvertSortedArraytoBinarySearchTree invertBinaryTree = new ConvertSortedArraytoBinarySearchTree();
-TreeNode res=invertBinaryTree.sortedArrayToBST(new int[]{1,2,3,4,5,6,7});
-        System.out.println(res.val);
-    }
-
     public TreeNode sortedArrayToBST(int[] num) {
         return helper(num,0,num.length-1);
     }
@@ -43,5 +36,11 @@ TreeNode res=invertBinaryTree.sortedArrayToBST(new int[]{1,2,3,4,5,6,7});
         root.right=helper(nums,m+1,h);
 
         return root;
+    }
+
+    public static void main(String[] args) {
+        ConvertSortedArraytoBinarySearchTree invertBinaryTree = new ConvertSortedArraytoBinarySearchTree();
+        TreeNode res=invertBinaryTree.sortedArrayToBST(new int[]{1,2,3,4,5,6,7});
+        System.out.println(res.val);
     }
 }
